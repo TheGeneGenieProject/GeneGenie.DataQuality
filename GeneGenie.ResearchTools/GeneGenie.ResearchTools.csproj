@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <Version>0.1</Version>
+    <Authors>GeneGenie.com</Authors>
+    <Company>GeneGenie.com</Company>
+    <Description>Library for researching and inferring links between personal data used in genealogy.</Description>
+    <Copyright>GeneGenie.com</Copyright>
+    <FileVersion>1.0.1.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.0\GeneGenie.ResearchTools.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.0\GeneGenie.ResearchTools.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

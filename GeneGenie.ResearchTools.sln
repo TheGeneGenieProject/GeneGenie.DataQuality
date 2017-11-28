@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneGenie.ResearchTools", "GeneGenie.ResearchTools\GeneGenie.ResearchTools.csproj", "{D9A47D25-D195-470C-ABA1-A64A1B76ADC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneGenie.ResearchTools.Tests", "GeneGenie.ResearchTools.Tests\GeneGenie.ResearchTools.Tests.csproj", "{F58CD82A-E9E8-492B-BE6C-0858B2496938}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9A47D25-D195-470C-ABA1-A64A1B76ADC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A47D25-D195-470C-ABA1-A64A1B76ADC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A47D25-D195-470C-ABA1-A64A1B76ADC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A47D25-D195-470C-ABA1-A64A1B76ADC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F58CD82A-E9E8-492B-BE6C-0858B2496938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58CD82A-E9E8-492B-BE6C-0858B2496938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58CD82A-E9E8-492B-BE6C-0858B2496938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58CD82A-E9E8-492B-BE6C-0858B2496938}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6493021-D12F-4AE3-BD5F-4C93738B68F4}
+	EndGlobalSection
+EndGlobal
