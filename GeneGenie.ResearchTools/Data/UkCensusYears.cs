@@ -132,6 +132,6 @@ namespace GeneGenie.ResearchTools.Data
         /// <summary>
         /// The 2011 census, records not publicly accessible.
         /// </summary>
-        Census2011 = 2011
+        Census2011 = 2011,
     }
 }

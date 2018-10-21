@@ -57,6 +57,6 @@ namespace GeneGenie.ResearchTools.Data
         Nov = 11,
 
         /// <summary>December</summary>
-        Dec = 12
+        Dec = 12,
     }
 }

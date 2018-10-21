@@ -48,14 +48,14 @@ namespace GeneGenie.ResearchTools
                 birthDateRanges.Add(new BirthdateRange
                 {
                     Earliest = DateTime.MinValue,
-                    Latest = DateTime.MaxValue
+                    Latest = DateTime.MaxValue,
                 });
             }
 
             return new BirthdateRange()
             {
                 Earliest = birthDateRanges.Min(b => b.Earliest),
-                Latest = birthDateRanges.Max(b => b.Latest)
+                Latest = birthDateRanges.Max(b => b.Latest),
             };
         }
 
@@ -70,7 +70,7 @@ namespace GeneGenie.ResearchTools
             return new BirthdateRange
             {
                 Earliest = knownAge.Date.AddYears(-(knownAge.Age + 1)).AddDays(1),
-                Latest = knownAge.Date.AddYears(-knownAge.Age)
+                Latest = knownAge.Date.AddYears(-knownAge.Age),
             };
         }
     }
