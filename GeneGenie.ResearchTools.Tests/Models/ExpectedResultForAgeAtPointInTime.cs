@@ -16,10 +16,10 @@
 // </copyright>
 // <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
-namespace GeneGenie.ResearchTools.Tests.Models
+namespace GeneGenie.DataQuality.Tests.Models
 {
     using System;
-    using GeneGenie.ResearchTools.Models;
+    using GeneGenie.DataQuality.Models;
 
     /// <summary>
     /// Used to create objects to hold test data for the expected outcome

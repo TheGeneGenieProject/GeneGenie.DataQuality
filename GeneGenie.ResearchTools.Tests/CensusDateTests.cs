@@ -16,10 +16,10 @@
 // </copyright>
 // <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
-namespace GeneGenie.ResearchTools.Tests
+namespace GeneGenie.DataQuality.Tests
 {
     using System;
-    using GeneGenie.ResearchTools.Data;
+    using GeneGenie.DataQuality.Data;
     using Xunit;
 
     /// <summary>

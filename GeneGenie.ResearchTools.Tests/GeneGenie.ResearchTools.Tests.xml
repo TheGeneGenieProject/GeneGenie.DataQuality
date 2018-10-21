@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GeneGenie.DataQuality.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:GeneGenie.DataQuality.Tests.AddressQuality.AddressQualityCheckerTests">
+            <summary>
+            Tests to ensure that we don't do an expensive lookup on known junk addresses.
+            The address is parsed to see if it is any of this type of data and a
+            quality status is returned.
+            </summary>
+        </member>
+        <member name="T:GeneGenie.DataQuality.Tests.CensusDateTests">
+            <summary>
+            Tests to ensure year census enum parses OK.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.CensusDateTests.Every_year_in_census_enum_has_a_date">
+            <summary>
+            Ensures every year in the census enum has a date.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.CensusDateTests.Year_not_in_census_throws_exception">
+            <summary>
+            Ensures that if someone passes in and casts an invalid int, they don't get a date
+            but get an exception instead.
+            </summary>
+        </member>
+        <member name="T:GeneGenie.DataQuality.Tests.CensusDayAndMonthTests">
+            <summary>
+            Sanity checks to ensure the days of the census' are correct.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.CensusDayAndMonthTests.Check_census_dates_are_on_correct_days(GeneGenie.DataQuality.Data.UkCensusYears,System.DayOfWeek,GeneGenie.DataQuality.Data.MonthNames)">
+            <summary>
+            Checks the census dates were on specific weekdays (data sanity check).
+            </summary>
+            <param name="censusYear">The census year.</param>
+            <param name="expectedDay">The expected day of the week.</param>
+            <param name="expectedMonth">The expected month.</param>
+        </member>
+        <member name="T:GeneGenie.DataQuality.Tests.ManyAgeAtPointInTimeUnitTests">
+            <summary>
+            Tests to check that multiple <see cref="T:GeneGenie.DataQuality.Models.AgeAtPointInTime"/> instances can be
+            summarised to create a more accurate date of birth range.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.ManyAgeAtPointInTimeUnitTests.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GeneGenie.DataQuality.Tests.ManyAgeAtPointInTimeUnitTests"/> class.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.ManyAgeAtPointInTimeUnitTests.Great_grandmother_evans_has_reasonable_date_range_based_on_multiple_census">
+            <summary>
+            Real data from Ryan's family tree as great grandmother Evans was the inspiration for these
+            library functions (she had unexpected ages recorded against some census data).
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.ManyAgeAtPointInTimeUnitTests.Empty_list_returns_minimum_and_maximum_dates_instead_of_blowing_up">
+            <summary>
+            Checks that an empty set of dates does not throw an exception.
+            </summary>
+        </member>
+        <member name="T:GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime">
+            <summary>
+            Used to create objects to hold test data for the expected outcome
+            of a test against <see cref="T:GeneGenie.DataQuality.BirthdateRangeFinder"/>.
+            </summary>
+        </member>
+        <member name="P:GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime.Expected">
+            <summary>
+            Gets or sets the expected result (up to the caller to compare against earliest or latest date in range).
+            </summary>
+        </member>
+        <member name="P:GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime.KnownAge">
+            <summary>
+            Gets or sets the age and point in time at which the person was that age for the range calculation.
+            </summary>
+        </member>
+        <member name="T:GeneGenie.DataQuality.Tests.PointInTimeEarliestUnitTests">
+            <summary>
+            Tests for ensuring that given a single date and age, the earliest birth date
+            can be calculated.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.PointInTimeEarliestUnitTests.Earliest_date_test_data">
+            <summary>
+            Returns a set of test data for checking an <see cref="P:GeneGenie.DataQuality.Models.BirthdateRange.Earliest"/> instance returned from <see cref="T:GeneGenie.DataQuality.BirthdateRangeFinder"/>.
+            </summary>
+            <returns>A list of objects wrapping <see cref="T:GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime"/> instances.</returns>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.PointInTimeEarliestUnitTests.Earliest_date_can_be_calculated_correctly(GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime)">
+            <summary>
+            Tests that the earliest date makes sense for each of the test cases defined when looking for a birth date range.
+            </summary>
+            <param name="data">Data to check that an <see cref="T:GeneGenie.DataQuality.Models.AgeAtPointInTime"/>instance has the correct earliest date.</param>
+        </member>
+        <member name="T:GeneGenie.DataQuality.Tests.PointInTimeLatestUnitTests">
+            <summary>
+            Tests for ensuring that given a single date and age, the latest birth date
+            can be calculated.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.PointInTimeLatestUnitTests.Latest_date_test_data">
+            <summary>
+            Returns a set of test data for checking an <see cref="P:GeneGenie.DataQuality.Models.BirthdateRange.Earliest"/> instance returned from <see cref="T:GeneGenie.DataQuality.BirthdateRangeFinder"/>.
+            </summary>
+            <returns>A list of objects wrapping <see cref="T:GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime"/> instances.</returns>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.PointInTimeLatestUnitTests.Latest_date_can_be_calculated_correctly(GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime)">
+            <summary>
+            Tests that the latest date makes sense for each of the test cases defined when looking for a birth date range.
+            </summary>
+            <param name="data">Data to check that an <see cref="T:GeneGenie.DataQuality.Models.AgeAtPointInTime"/>instance has the correct earliest date.</param>
+        </member>
+        <member name="T:GeneGenie.DataQuality.Tests.TestDataFactoryHelpers">
+            <summary>
+            Helper functions to create test data objects.
+            </summary>
+        </member>
+        <member name="M:GeneGenie.DataQuality.Tests.TestDataFactoryHelpers.CreateExpectedAge(System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Create an instance of <see cref="T:GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime"/> for use in testing birth date calculations.
+            </summary>
+            <param name="age">The age for the <see cref="T:GeneGenie.DataQuality.Models.AgeAtPointInTime"/> to be tested.</param>
+            <param name="pointInTime">The date for the <see cref="T:GeneGenie.DataQuality.Models.AgeAtPointInTime"/> to be tested.</param>
+            <param name="expected">The expected result to be compared against earliest or latest dare in range.</param>
+            <returns>An instance of <see cref="T:GeneGenie.DataQuality.Tests.Models.ExpectedResultForAgeAtPointInTime"/> to be fed into a test method.</returns>
+        </member>
+    </members>
+</doc>

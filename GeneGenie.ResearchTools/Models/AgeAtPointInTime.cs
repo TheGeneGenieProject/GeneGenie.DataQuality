@@ -16,7 +16,7 @@
 // </copyright>
 // <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
-namespace GeneGenie.ResearchTools.Models
+namespace GeneGenie.DataQuality.Models
 {
     using System;
 

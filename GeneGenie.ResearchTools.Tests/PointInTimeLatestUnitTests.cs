@@ -16,14 +16,14 @@
 // </copyright>
 // <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
-namespace GeneGenie.ResearchTools.Tests
+namespace GeneGenie.DataQuality.Tests
 {
     using System;
     using System.Collections.Generic;
-    using GeneGenie.ResearchTools;
-    using GeneGenie.ResearchTools.Data;
-    using GeneGenie.ResearchTools.Models;
-    using GeneGenie.ResearchTools.Tests.Models;
+    using GeneGenie.DataQuality;
+    using GeneGenie.DataQuality.Data;
+    using GeneGenie.DataQuality.Models;
+    using GeneGenie.DataQuality.Tests.Models;
     using Xunit;
 
     /// <summary>

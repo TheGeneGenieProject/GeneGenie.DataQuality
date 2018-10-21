@@ -16,12 +16,12 @@
 // </copyright>
 // <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
-namespace GeneGenie.ResearchTools
+namespace GeneGenie.DataQuality
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using GeneGenie.ResearchTools.Models;
+    using GeneGenie.DataQuality.Models;
 
     /// <summary>
     /// Used to find a range of possible birth dates given a known age and date.

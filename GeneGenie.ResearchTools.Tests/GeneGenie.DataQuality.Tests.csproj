@@ -17,12 +17,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.0\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\Ryan\Source\Repos\GeneGenie\GeneGenie.ResearchTools\GeneGenie.ResearchTools.Tests\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
     <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.0\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\Ryan\Source\Repos\GeneGenie\GeneGenie.ResearchTools\GeneGenie.ResearchTools.Tests\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
     <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
@@ -44,11 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeneGenie.ResearchTools\GeneGenie.ResearchTools.csproj" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <ProjectReference Include="..\GeneGenie.ResearchTools\GeneGenie.DataQuality.csproj" />
   </ItemGroup>
 
 </Project>
