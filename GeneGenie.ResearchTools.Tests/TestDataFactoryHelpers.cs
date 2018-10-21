@@ -39,7 +39,7 @@ namespace GeneGenie.ResearchTools.Tests
             return new ExpectedResultForAgeAtPointInTime
             {
                 Expected = expected,
-                KnownAge = new AgeAtPointInTime(age, pointInTime)
+                KnownAge = new AgeAtPointInTime { Age = age, Date = pointInTime },
             };
         }
     }

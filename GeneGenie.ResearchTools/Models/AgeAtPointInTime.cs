@@ -33,17 +33,6 @@ namespace GeneGenie.ResearchTools.Models
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AgeAtPointInTime"/> class.
-        /// </summary>
-        /// <param name="age">The age of the person in years.</param>
-        /// <param name="date">The date that the person was known to be a specific age.</param>
-        public AgeAtPointInTime(int age, DateTime date)
-        {
-            Age = age;
-            Date = date;
-        }
-
-        /// <summary>
         /// Gets or sets the persons' age as normally reported in a census or official document.
         /// </summary>
         public int Age { get; set; }
