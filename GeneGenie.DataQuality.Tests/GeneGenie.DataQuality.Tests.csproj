@@ -18,16 +18,20 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\Ryan\Source\Repos\GeneGenie\GeneGenie.ResearchTools\GeneGenie.ResearchTools.Tests\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Users\Ryan\Source\Repos\GeneGenie\GeneGenie.ResearchTools\GeneGenie.ResearchTools.Tests\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
+    <Compile Include="..\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
