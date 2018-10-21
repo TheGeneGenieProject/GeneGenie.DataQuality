@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeneGenie.ResearchTools\GeneGenie.DataQuality.csproj" />
+    <ProjectReference Include="..\GeneGenie.DataQuality\GeneGenie.DataQuality.csproj" />
   </ItemGroup>
 
 </Project>

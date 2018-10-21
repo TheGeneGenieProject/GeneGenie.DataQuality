@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,19 +6,19 @@
     <Version>0.1</Version>
     <Authors>GeneGenie.com</Authors>
     <Company>GeneGenie.com</Company>
-    <Description>Library for researching and inferring links between personal data used in genealogy.</Description>
+    <Description>Library for testing, cleaning, researching and inferring links between personal data used in genealogy.</Description>
     <Copyright>GeneGenie.com</Copyright>
     <FileVersion>1.0.1.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.0\GeneGenie.ResearchTools.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\netstandard1.0\GeneGenie.DataQuality.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>GeneGenie.DataQuality.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.0\GeneGenie.ResearchTools.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>GeneGenie.ResearchTools.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\netstandard1.0\GeneGenie.DataQuality.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>GeneGenie.DataQuality.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
