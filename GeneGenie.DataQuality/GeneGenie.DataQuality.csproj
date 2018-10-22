@@ -1,49 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <Version>1.0.0</Version>
-    <Authors>GeneGenie.com</Authors>
-    <Company>GeneGenie.com</Company>
-    <Description>Library for testing, cleaning, researching and inferring links between personal data used in genealogy.</Description>
-    <Copyright>GeneGenie.com</Copyright>
-    <FileVersion>1.0.1.0</FileVersion>
-    <PackageIconUrl>https://avatars0.githubusercontent.com/u/22330020?s=200&amp;v=4</PackageIconUrl>
-    <PackageTags>genegenie gene genie data quality</PackageTags>
-    <PackageProjectUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/blob/master/Licence.txt</PackageLicenseUrl>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>StrongName.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyVersion>0.0.1.0</AssemblyVersion>
+        <Version>1.0.0</Version>
+        <Authors>GeneGenie.com</Authors>
+        <Company>GeneGenie.com</Company>
+        <Description>Library for testing, cleaning, researching and inferring links between personal data used in genealogy.</Description>
+        <Copyright>GeneGenie.com</Copyright>
+        <FileVersion>1.0.1.0</FileVersion>
+        <PackageIconUrl>https://avatars0.githubusercontent.com/u/22330020?s=200&amp;v=4</PackageIconUrl>
+        <PackageTags>genegenie gene genie data quality</PackageTags>
+        <PackageProjectUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/blob/master/Licence.txt</PackageLicenseUrl>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>StrongName.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.0\GeneGenie.DataQuality.xml</DocumentationFile>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>bin\Debug\netstandard1.0\GeneGenie.DataQuality.xml</DocumentationFile>
+        <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.0\GeneGenie.DataQuality.xml</DocumentationFile>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DocumentationFile>bin\Release\netstandard1.0\GeneGenie.DataQuality.xml</DocumentationFile>
+        <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
-  </ItemGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Properties\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
+    </ItemGroup>
 
 </Project>
