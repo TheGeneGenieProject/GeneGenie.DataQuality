@@ -3,12 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <Version>0.1</Version>
+    <Version>1.0.0</Version>
     <Authors>GeneGenie.com</Authors>
     <Company>GeneGenie.com</Company>
     <Description>Library for testing, cleaning, researching and inferring links between personal data used in genealogy.</Description>
     <Copyright>GeneGenie.com</Copyright>
     <FileVersion>1.0.1.0</FileVersion>
+    <PackageIconUrl>https://avatars0.githubusercontent.com/u/22330020?s=200&amp;v=4</PackageIconUrl>
+    <PackageTags>genegenie gene genie data quality</PackageTags>
+    <PackageProjectUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/blob/master/Licence.txt</PackageLicenseUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>StrongName.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
