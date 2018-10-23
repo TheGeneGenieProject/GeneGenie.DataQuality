@@ -8,7 +8,7 @@ build:
   verbosity: minimal
 
 test_script:
- - dotnet test GeneGenie.DataQuality.Tests/GeneGenie.DataQuality.Tests.csproj /p:AltCover=true
+ - dotnet test GeneGenie.DataQuality.Tests/GeneGenie.DataQuality.Tests.csproj /p:AltCover=true /p:AltCoverAssemblyExcludeFilter=GeneGenie.DataQuality.Tests
 after_test:
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
