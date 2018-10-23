@@ -1,0 +1,16 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+environment:
+  CODECOV_TOKEN: 324e40c0-d27b-4079-89fe-a7946b3395fa
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+
+test_script:
+ - dotnet test GeneGenie.DataQuality.Tests/GeneGenie.DataQuality.Tests.csproj /p:AltCover=true
+after_test:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.xml" -t $Env:CODECOV_TOKEN
