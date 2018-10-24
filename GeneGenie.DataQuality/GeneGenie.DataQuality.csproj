@@ -5,8 +5,8 @@
         <Version>1.0.1</Version>
         <Authors>GeneGenie.com</Authors>
         <Company>GeneGenie.com</Company>
-        <PackageDescription>Library for testing, cleaning, researching and inferring links between personal data used in genealogy.</PackageDescription>
-        <Description>Library for testing, cleaning, researching and inferring links between personal data used in genealogy.</Description>
+        <PackageDescription>.Net Standard library for testing, cleaning, researching and inferring links between personal data used in genealogy.</PackageDescription>
+        <Description>.Net Standard library for testing, cleaning, researching and inferring links between personal data used in genealogy.</Description>
         <Copyright>GeneGenie.com</Copyright>
         <PackageIconUrl>https://avatars0.githubusercontent.com/u/22330020?s=200&amp;v=4</PackageIconUrl>
         <PackageTags>genegenie gene genie data quality genealogy family history</PackageTags>
