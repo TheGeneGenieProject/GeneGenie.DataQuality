@@ -5,8 +5,6 @@ before_build:
 build:
   publish_nuget: true
   verbosity: minimal
-after_build:
-- cmd: nuget pack
 artifacts:
 - path: '**\*.nupkg'
   name: NuGet
