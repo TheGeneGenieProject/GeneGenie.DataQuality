@@ -1,10 +1,14 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+configuration:
+  - Release
 before_build:
 - cmd: nuget restore
 build:
   publish_nuget: true
   verbosity: minimal
+after_build:
+- cmd: dotnet pack GeneGenie.DataQuality\GeneGenie.DataQuality.csproj --configuration Release --output . --no-build
 artifacts:
 - path: '**/*.nupkg'
   name: NuGet
