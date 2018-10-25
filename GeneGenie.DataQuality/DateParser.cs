@@ -56,7 +56,7 @@ namespace GeneGenie.DataQuality
                 return dateRange;
             }
 
-            int year, month = -1, day = -1, yearPos, monthPos = -1, dayPos = -1;
+            int year, month, day, yearPos, monthPos = -1, dayPos = -1;
             bool monthIsNamed;
 
             if (dateComponents.Count == 1)

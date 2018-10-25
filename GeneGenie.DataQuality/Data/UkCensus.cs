@@ -13,7 +13,7 @@ namespace GeneGenie.DataQuality.Data
     /// <summary>
     /// Data and helper function to find specific dates based on UK census years.
     /// </summary>
-    public class UkCensus
+    public static class UkCensus
     {
         /// <summary>
         /// Dates for publicly accessible UK census records.
