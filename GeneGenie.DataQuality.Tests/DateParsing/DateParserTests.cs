@@ -53,6 +53,12 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "xxx 27 xxx", DateFormat.UnableToParse },
                 new object[] { "xxx xx 1939", DateFormat.UnableToParse },
                 new object[] { "xxx xx xxxx", DateFormat.UnableToParse },
+
+                new object[] { "yyyy", DateFormat.UnableToParse },
+                new object[] { "yyyy mm", DateFormat.UnableToParse },
+                new object[] { "yyyy mm dd", DateFormat.UnableToParse },
+                new object[] { "2000 mm dd", DateFormat.UnableToParse },
+                new object[] { "mm dd 2000", DateFormat.UnableToParse },
             };
 
         public static IEnumerable<object[]> DelimiterData =>

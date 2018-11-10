@@ -84,6 +84,8 @@ namespace GeneGenie.DataQuality
                     return dateRange;
                 }
 
+                dateRange.SourceFormat = DateFormat.UnableToParse;
+                dateRange.Status = DateQualityStatus.NotValid;
                 return dateRange;
             }
 
@@ -126,6 +128,7 @@ namespace GeneGenie.DataQuality
                 }
                 else
                 {
+                    dateRange.SourceFormat = DateFormat.UnableToParse;
                     dateRange.Status = DateQualityStatus.NotValid;
                 }
 
