@@ -15,6 +15,7 @@ namespace GeneGenie.DataQuality.Models
         // TODO: Is DateTime the correct type here? DateTimeOffset? These are historical dates, we won't always know the timezone or location.
         // TODO: When going to the client in a view model, these should not be nullable.
         public DateTime? DateFrom { get; set; }
+
         public DateTime? DateTo { get; set; }
 
         // TODO: Ensure guessed source formats cannot be used until set to specific format.
@@ -25,9 +26,9 @@ namespace GeneGenie.DataQuality.Models
 
         public string Source { get; set; }
 
-        // Date not valid, user intervention required.
-
-        // Calendar?
-        // Could not parse date, check source value.
+        /// <summary>
+        /// Gets or sets an indicator for the quality of the date field based, used to detect incorrect data.
+        /// </summary>
+        public DateQualityStatus Status { get; set; }
     }
 }

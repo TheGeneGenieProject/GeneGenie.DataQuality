@@ -23,7 +23,7 @@ namespace GeneGenie.DataQuality
         private const int MaxMonth = 12;
         private const int MinDay = 1;
         private const int MaxDay = 31;
-        private const int MinMonthNameLength = 3; // Don't want to compare ju, it might match jun or jul.
+        private const int MinMonthNameLength = 3; // Don't want to compare to 'ju', it might match jun or jul.
 
         private static readonly char[] DateDelimiters = { ' ', '-', '/', '\\' };
 
@@ -44,6 +44,7 @@ namespace GeneGenie.DataQuality
 
             if (string.IsNullOrWhiteSpace(value))
             {
+                dateRange.Status = DateQualityStatus.Empty;
                 return dateRange;
             }
 
@@ -53,6 +54,7 @@ namespace GeneGenie.DataQuality
                 .ToList();
             if (dateComponents.Count == 0 || dateComponents.Count > 3)
             {
+                dateRange.Status = DateQualityStatus.TooManyDateParts;
                 return dateRange;
             }
 
@@ -70,6 +72,7 @@ namespace GeneGenie.DataQuality
                     dateRange.Scope = DateRangeScope.DateRangeWithTimeRange;
                     dateRange.SourceFormat = DateFormat.Yyyy;
 
+                    dateRange.Status = DateQualityStatus.OK;
                     return dateRange;
                 }
 
@@ -77,6 +80,7 @@ namespace GeneGenie.DataQuality
                 if (ExtractMonth(ref dateComponents, out month, out monthIsNamed) >= 0)
                 {
                     dateRange.SourceFormat = monthIsNamed ? DateFormat.Mmm : DateFormat.Mm;
+                    dateRange.Status = DateQualityStatus.OnlyMonthIsPresent;
                     return dateRange;
                 }
 
@@ -103,6 +107,8 @@ namespace GeneGenie.DataQuality
                         {
                             dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mm : DateFormat.Mm_yyyy;
                         }
+
+                        dateRange.Status = DateQualityStatus.OK;
                     }
                     else
                     {
@@ -114,7 +120,13 @@ namespace GeneGenie.DataQuality
                         {
                             dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mm_dd : DateFormat.Dd_mm;
                         }
+
+                        dateRange.Status = DateQualityStatus.NotValid;
                     }
+                }
+                else
+                {
+                    dateRange.Status = DateQualityStatus.NotValid;
                 }
 
                 return dateRange;
@@ -125,6 +137,7 @@ namespace GeneGenie.DataQuality
             if (yearPos == -1)
             {
                 dateRange.SourceFormat = DateFormat.UnableToParse;
+                dateRange.Status = DateQualityStatus.ThreePartsWithoutYear;
                 return dateRange;
             }
 
@@ -132,6 +145,7 @@ namespace GeneGenie.DataQuality
             {
                 // Year is in the middle, we're not going to try this unless we get lot of demand from users.
                 dateRange.SourceFormat = DateFormat.UnableToParseAsYearInMiddle;
+                dateRange.Status = DateQualityStatus.YearInMiddle;
                 return dateRange;
             }
 
@@ -178,6 +192,7 @@ namespace GeneGenie.DataQuality
                     if (day <= MaxMonth && !monthIsNamed)
                     {
                         dateRange.SourceFormat = DateFormat.UnsureEndingWithDateOrMonth;
+                        dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
                     }
                     else
                     {
@@ -189,6 +204,8 @@ namespace GeneGenie.DataQuality
                         {
                             dateRange.SourceFormat = dayPos > monthPos ? DateFormat.Yyyy_mm_dd : DateFormat.Yyyy_dd_mm;
                         }
+
+                        dateRange.Status = DateQualityStatus.OK;
                     }
                 }
                 else
@@ -196,6 +213,7 @@ namespace GeneGenie.DataQuality
                     if (day <= MaxMonth && !monthIsNamed)
                     {
                         dateRange.SourceFormat = DateFormat.UnsureStartingWithDateOrMonth;
+                        dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
                     }
                     else
                     {
@@ -207,12 +225,15 @@ namespace GeneGenie.DataQuality
                         {
                             dateRange.SourceFormat = dayPos > monthPos ? DateFormat.Mm_dd_yyyy : DateFormat.Dd_mm_yyyy;
                         }
+
+                        dateRange.Status = DateQualityStatus.OK;
                     }
                 }
             }
             else
             {
                 dateRange.SourceFormat = DateFormat.UnableToParse;
+                dateRange.Status = DateQualityStatus.NotValid;
             }
 
             return dateRange;
