@@ -52,6 +52,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "xxxx 13", DateQualityStatus.NotValid },
                 new object[] { "49 12", DateQualityStatus.NotValid },
                 new object[] { "2050 12", DateQualityStatus.NotValid },
+                new object[] { "unknown", DateQualityStatus.NotValid },
 
                 new object[] { "1 1 1", DateQualityStatus.ThreePartsWithoutYear },
                 new object[] { "1 1 49", DateQualityStatus.ThreePartsWithoutYear },
