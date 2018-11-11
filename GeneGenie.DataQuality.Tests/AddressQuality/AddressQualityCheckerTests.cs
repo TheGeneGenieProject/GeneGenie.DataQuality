@@ -24,7 +24,7 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
             addressQualityChecker = new AddressQualityChecker(dateParser);
         }
 
-        public static IEnumerable<object[]> WhitespaceKeyValueData =>
+        public static IEnumerable<object[]> AddressQualityData =>
             new List<object[]>
             {
                 new object[] { null, AddressQualityStatus.Empty },
@@ -33,68 +33,29 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
                 new object[] { "  ", AddressQualityStatus.Empty },
                 new object[] { " \t ", AddressQualityStatus.Empty },
                 new object[] { " \n\r \r\n \t ", AddressQualityStatus.Empty },
-            };
 
-        public static IEnumerable<object[]> DateKeyValueData =>
-            new List<object[]>
-            {
                 new object[] { "Jan 1 2000", AddressQualityStatus.SeemsToBeADate },
                 new object[] { "1 Jan 2000", AddressQualityStatus.SeemsToBeADate },
                 new object[] { "1/1/2000", AddressQualityStatus.SeemsToBeADate },
                 new object[] { "1\\1\\2000", AddressQualityStatus.SeemsToBeADate },
-            };
 
-        public static IEnumerable<object[]> OtherJunkKeyValueData =>
-            new List<object[]>
-            {
                 new object[] { "1", AddressQualityStatus.AllNumeric },
                 new object[] { "UnKnown", AddressQualityStatus.KnownErroneous },
                 new object[] { "?", AddressQualityStatus.KnownErroneous },
                 new object[] { "? ?", AddressQualityStatus.KnownErroneous },
                 new object[] { " ??? ", AddressQualityStatus.KnownErroneous },
                 new object[] { ",.", AddressQualityStatus.KnownErroneous },
-            };
 
-        public static IEnumerable<object[]> GoodLocationsKeyValueData =>
-            new List<object[]>
-            {
-                new object[] { "aplacename" },
-                new object[] { "a-placename" },
-                new object[] { "a-place-name" },
-                new object[] { "a-four-part-name" },
-                new object[] { "another four part name" },
+                new object[] { "aplacename", AddressQualityStatus.OK },
+                new object[] { "a-placename", AddressQualityStatus.OK },
+                new object[] { "a-place-name", AddressQualityStatus.OK },
+                new object[] { "a-four-part-name", AddressQualityStatus.OK },
+                new object[] { "another four part name", AddressQualityStatus.OK },
             };
 
         [Theory]
-        [MemberData(nameof(WhitespaceKeyValueData))]
-        public void Whitespace_is_detected_in_locations(string source, AddressQualityStatus expected)
-        {
-            var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
-
-            Assert.Equal(expected, status);
-        }
-
-        [Theory]
-        [MemberData(nameof(DateKeyValueData))]
-        public void Dates_are_detected_in_locations(string source, AddressQualityStatus expected)
-        {
-            var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
-
-            Assert.Equal(expected, status);
-        }
-
-        [Theory]
-        [MemberData(nameof(GoodLocationsKeyValueData))]
-        public void Place_names_are_parsed_as_ok(string source)
-        {
-            var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
-
-            Assert.Equal(AddressQualityStatus.OK, status);
-        }
-
-        [Theory]
-        [MemberData(nameof(OtherJunkKeyValueData))]
-        public void Locations_are_filtered_of_known_junk_formats(string source, AddressQualityStatus expected)
+        [MemberData(nameof(AddressQualityData))]
+        private void Address_quality_can_be_calculated_correctly(string source, AddressQualityStatus expected)
         {
             var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
 

@@ -11,11 +11,34 @@ namespace GeneGenie.DataQuality.Models
     /// </summary>
     public enum AddressQualityStatus
     {
+        /// <summary>
+        /// Address has not been parsed yet.
+        /// </summary>
         NotSet = 0,
+
+        /// <summary>
+        /// It says 'address' on the tin, but it's a date!
+        /// </summary>
         SeemsToBeADate = 1,
+
+        /// <summary>
+        /// Just a numch of numbers, not parseable as an address.
+        /// </summary>
         AllNumeric = 2,
+
+        /// <summary>
+        /// Known junk data such as 'unknown'.
+        /// </summary>
         KnownErroneous = 3,
+
+        /// <summary>
+        /// Whitespace or null.
+        /// </summary>
         Empty = 4,
+
+        /// <summary>
+        /// The address appears to have enough information that an address lookup can be performed.
+        /// </summary>
         OK = 100,
     }
 }
