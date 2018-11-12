@@ -11,7 +11,7 @@ namespace GeneGenie.DataQuality
 
     public class AddressQualityChecker
     {
-        private static List<string> knownJunkLocations = new List<string>
+        private static readonly List<string> KnownJunkLocations = new List<string>
         {
             "unknown",
             "?",
@@ -33,7 +33,7 @@ namespace GeneGenie.DataQuality
 
             var cleaned = source.Replace(" ", string.Empty).ToLower();
 
-            if (knownJunkLocations.Contains(cleaned))
+            if (KnownJunkLocations.Contains(cleaned))
             {
                 return AddressQualityStatus.KnownErroneous;
             }
