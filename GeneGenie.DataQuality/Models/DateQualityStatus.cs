@@ -46,16 +46,16 @@ namespace GeneGenie.DataQuality.Models
         /// <summary>
         /// Although 3 parts of the date have been found, none of them look like a valid year.
         /// </summary>
-        ThreePartsWithoutYear = 5,
+        ThreePartsWithoutYear = 6,
 
         /// <summary>
         /// Although 3 parts of the date have been found, the year was in the middle which is not a sensible format and we can't use it.
         /// </summary>
-        YearInMiddle = 6,
+        YearInMiddle = 7,
 
         /// <summary>
         /// Although 3 parts of the date have been found, the month and the day could not be determined because they are ambiguous.
         /// </summary>
-        MonthIsAmbiguous = 7,
+        MonthIsAmbiguous = 8,
     }
 }
