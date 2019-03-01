@@ -1,4 +1,3 @@
-mkdir .sonarqube
 dotnet tool install --global dotnet-sonarscanner
 dotnet test GeneGenie.DataQuality.Tests\GeneGenie.DataQuality.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="%CD%\opencover.xml"
 dotnet build-server shutdown
