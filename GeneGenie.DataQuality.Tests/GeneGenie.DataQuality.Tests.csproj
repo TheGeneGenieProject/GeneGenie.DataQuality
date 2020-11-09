@@ -7,7 +7,7 @@
 
     <Version>0.1</Version>
 
-    <Description>Tests for GeneGenie.ResearchTools.</Description>
+    <Description>Tests for GeneGenie.DataQuanlity</Description>
 
     <Copyright>GeneGenie.com</Copyright>
 
@@ -16,13 +16,8 @@
     <FileVersion>0.0.1.0</FileVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Ryan\Source\Repos\GeneGenie\GeneGenie.ResearchTools\GeneGenie.ResearchTools.Tests\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\Ryan\Source\Repos\GeneGenie\GeneGenie.ResearchTools\GeneGenie.ResearchTools.Tests\GeneGenie.ResearchTools.Tests.xml</DocumentationFile>
+    <DocumentationFile>GeneGenie.DataQuality.Tests.xml</DocumentationFile>
     <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
   </PropertyGroup>
 
@@ -40,7 +35,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
