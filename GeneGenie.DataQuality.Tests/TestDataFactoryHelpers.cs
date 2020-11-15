@@ -24,11 +24,10 @@ namespace GeneGenie.DataQuality.Tests
         /// <returns>An instance of <see cref="ExpectedResultForAgeAtPointInTime"/> to be fed into a test method.</returns>
         internal static ExpectedResultForAgeAtPointInTime CreateExpectedAge(int age, DateTime pointInTime, DateTime expected)
         {
-            return new ExpectedResultForAgeAtPointInTime
-            {
-                Expected = expected,
-                KnownAge = new AgeAtPointInTime { Age = age, Date = pointInTime },
-            };
+            return new ExpectedResultForAgeAtPointInTime(
+                expected,
+                new AgeAtPointInTime { Age = age, Date = pointInTime }
+            );
         }
     }
 }

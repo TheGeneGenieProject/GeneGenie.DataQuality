@@ -40,7 +40,7 @@ namespace GeneGenie.DataQuality
 
         public DateRange Parse(string value)
         {
-            var dateRange = new DateRange { Source = value };
+            var dateRange = new DateRange(value);
 
             if (string.IsNullOrWhiteSpace(value))
             {

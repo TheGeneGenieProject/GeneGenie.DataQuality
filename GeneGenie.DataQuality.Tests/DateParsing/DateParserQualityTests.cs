@@ -27,7 +27,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         public static IEnumerable<object[]> ExpectedDateQualityData =>
             new List<object[]>
             {
-                new object[] { null, DateQualityStatus.Empty },
                 new object[] { string.Empty, DateQualityStatus.Empty },
                 new object[] { " ", DateQualityStatus.Empty },
 

@@ -79,14 +79,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             };
 
         [Fact]
-        public void Null_does_not_throw_exception_when_parsing_date()
-        {
-            var dateRange = dateParser.Parse(null);
-
-            Assert.NotNull(dateRange);
-        }
-
-        [Fact]
         public void Empty_does_not_throw_exception_when_parsing_date()
         {
             var dateRange = dateParser.Parse(string.Empty);
@@ -97,7 +89,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [Fact]
         public void Empty_result_indicates_invalid_dates()
         {
-            var dateRange = dateParser.Parse(null);
+            var dateRange = dateParser.Parse(string.Empty);
 
             Assert.Null(dateRange.DateFrom);
             Assert.Null(dateRange.DateTo);

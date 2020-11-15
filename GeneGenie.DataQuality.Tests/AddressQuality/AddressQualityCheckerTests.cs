@@ -27,7 +27,6 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
         public static IEnumerable<object[]> AddressQualityData =>
             new List<object[]>
             {
-                new object[] { null, AddressQualityStatus.Empty },
                 new object[] { string.Empty, AddressQualityStatus.Empty },
                 new object[] { " ", AddressQualityStatus.Empty },
                 new object[] { "  ", AddressQualityStatus.Empty },

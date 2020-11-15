@@ -7,8 +7,13 @@ namespace GeneGenie.DataQuality.Models
 {
     using System;
 
-    public class DateRange
+    public record DateRange
     {
+        public DateRange(string source)
+        {
+            Source = source;
+        }
+
         // Accuracy:
         // Type: NotSet, Guess, needs attention.
 
@@ -24,7 +29,7 @@ namespace GeneGenie.DataQuality.Models
         // TODO: Look at using GedcomDatePeriod from main GeneGenie project, when that's wrapped up as a nuget package.
         public DateRangeScope Scope { get; set; }
 
-        public string Source { get; set; }
+        public string Source { get; init; }
 
         /// <summary>
         /// Gets or sets an indicator for the quality of the date field based, used to detect incorrect data.

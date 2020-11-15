@@ -15,14 +15,20 @@ namespace GeneGenie.DataQuality.Tests.Models
     /// </summary>
     public class ExpectedResultForAgeAtPointInTime
     {
+        public ExpectedResultForAgeAtPointInTime(DateTime expected, AgeAtPointInTime knownAge)
+        {
+            Expected = expected;
+            KnownAge = knownAge;
+        }
+
         /// <summary>
         /// Gets or sets the expected result (up to the caller to compare against earliest or latest date in range).
         /// </summary>
-        public DateTime Expected { get; set; }
+        public DateTime Expected { get; init; }
 
         /// <summary>
         /// Gets or sets the age and point in time at which the person was that age for the range calculation.
         /// </summary>
-        public AgeAtPointInTime KnownAge { get; set; }
+        public AgeAtPointInTime KnownAge { get; init; }
     }
 }
