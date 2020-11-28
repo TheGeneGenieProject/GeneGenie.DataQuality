@@ -1,4 +1,4 @@
-name: .NET Core
+name: Build and run tests
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,12 +20,20 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
-
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1.5
-      if: always()
+#    - name: Test
+#      run: dotnet test --no-restore --verbosity normal
+    - name: Unit tests
+      uses: zyborg/dotnet-tests-report@v1.0.0
       with:
+        project_path: GeneGenie.DataQuality.Tests
+        report_name: unit_test_results
+        report_title: Unit test results
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        files: test-results/**/*.xml
+        gist_name: unit_tests.md
+        gist_badge_label: 'Unit tests: %Counters_passed%/%Counters_total%'
+        gist_token: ${{ secrets.GIST_TOKEN }}
+
+#  test:
+#    runs-on: ubuntu-latest
+#    steps:
+
