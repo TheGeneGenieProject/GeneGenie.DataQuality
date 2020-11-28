@@ -51,7 +51,8 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-    - uses: actions/setup-dotnet@main
+    - name: Setup .Net SDK (v5.0)
+      uses: actions/setup-dotnet@1.7.2
       with:
         dotnet-version: '5.x' # SDK Version to use; x will use the latest version of the 3.1 channel
 
