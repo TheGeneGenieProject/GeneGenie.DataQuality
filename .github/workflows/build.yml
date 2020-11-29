@@ -12,6 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting for sonarcloud
+        fetch-depth: 0
     - name: Setup .Net SDK (v5.0)
       uses: actions/setup-dotnet@v1
       with:
@@ -22,16 +25,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-#    - name: Unit tests
-#      uses: zyborg/dotnet-tests-report@v1.0.0
-#      with:
-#        project_path: GeneGenie.DataQuality.Tests
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        gist_name: unit_tests.md
-#        gist_badge_label: 'Unit tests: %Counters_passed%/%Counters_total%'
-#        gist_token: ${{ secrets.GIST_TOKEN }}
-
-#  test:
-#    runs-on: ubuntu-latest
-#    steps:
-
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
