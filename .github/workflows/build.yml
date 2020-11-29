@@ -31,9 +31,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        projectBaseDir: GeneGenie.DataQuality.Tests
         args: >
           -Dsonar.organization=thegenegenieproject
           -Dsonar.projectKey=GeneGenie.DataQuality
-          -Dsonar.cs.opencover.reportsPaths=~/GeneGenie.DataQuality.Tests/opencover.xml
+          -Dsonar.cs.opencover.reportsPaths=~/github/workspace/GeneGenie.DataQuality.Tests/opencover.xml
           -Dsonar.verbose=true
