@@ -20,16 +20,16 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-#    - name: Test
-#      run: dotnet test --no-restore --verbosity normal
-    - name: Unit tests
-      uses: zyborg/dotnet-tests-report@v1.0.0
-      with:
-        project_path: GeneGenie.DataQuality.Tests
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        gist_name: unit_tests.md
-        gist_badge_label: 'Unit tests: %Counters_passed%/%Counters_total%'
-        gist_token: ${{ secrets.GIST_TOKEN }}
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+#    - name: Unit tests
+#      uses: zyborg/dotnet-tests-report@v1.0.0
+#      with:
+#        project_path: GeneGenie.DataQuality.Tests
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        gist_name: unit_tests.md
+#        gist_badge_label: 'Unit tests: %Counters_passed%/%Counters_total%'
+#        gist_token: ${{ secrets.GIST_TOKEN }}
 
 #  test:
 #    runs-on: ubuntu-latest
