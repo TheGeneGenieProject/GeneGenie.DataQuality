@@ -26,8 +26,7 @@ namespace GeneGenie.DataQuality.Tests
         {
             return new ExpectedResultForAgeAtPointInTime(
                 expected,
-                new AgeAtPointInTime { Age = age, Date = pointInTime }
-            );
+                new AgeAtPointInTime { Age = age, Date = pointInTime });
         }
     }
 }
