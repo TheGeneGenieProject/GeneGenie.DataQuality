@@ -26,8 +26,6 @@ jobs:
       uses: zyborg/dotnet-tests-report@v1.0.0
       with:
         project_path: GeneGenie.DataQuality.Tests
-        report_name: unit_test_results
-        report_title: Unit test results
         github_token: ${{ secrets.GITHUB_TOKEN }}
         gist_name: unit_tests.md
         gist_badge_label: 'Unit tests: %Counters_passed%/%Counters_total%'
