@@ -33,5 +33,7 @@ jobs:
       with:
         projectBaseDir: GeneGenie.DataQuality.Tests
         args: >
+          -Dsonar.organization=thegenegenieproject
+          -Dsonar.projectKey=GeneGenie.DataQuality
           -Dsonar.cs.opencover.reportsPaths=opencover.xml
           -Dsonar.verbose=true
