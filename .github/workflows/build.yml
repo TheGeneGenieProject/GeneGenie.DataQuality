@@ -34,5 +34,5 @@ jobs:
         args: >
           -Dsonar.organization=thegenegenieproject
           -Dsonar.projectKey=GeneGenie.DataQuality
-          -Dsonar.cs.opencover.reportsPaths=/home/runner/work/GeneGenie.DataQuality/GeneGenie.DataQuality/GeneGenie.DataQuality.Tests/opencover.xml
+          -Dsonar.cs.opencover.reportsPaths=GeneGenie.DataQuality.Tests/opencover.xml
           -Dsonar.verbose=true
