@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=opencover.xml /p:UseSourceLink=true
+      run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:UseSourceLink=true --logger trx
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
@@ -34,5 +34,8 @@ jobs:
         args: >
           -Dsonar.organization=thegenegenieproject
           -Dsonar.projectKey=GeneGenie.DataQuality
-          -Dsonar.cs.opencover.reportsPaths=GeneGenie.DataQuality.Tests/opencover.xml
+          -Dsonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
+          -Dsonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
           -Dsonar.verbose=true
+          
+          
