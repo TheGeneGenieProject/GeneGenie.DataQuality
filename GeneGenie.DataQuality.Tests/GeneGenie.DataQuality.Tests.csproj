@@ -50,10 +50,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GeneGenie.DataQuality\GeneGenie.DataQuality.csproj" />
   </ItemGroup>
 
