@@ -26,7 +26,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       #run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:UseSourceLink=true --logger trx
-      run: dotnet test GeneGenie.DataQuality.Tests\GeneGenie.DataQuality.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
 
     - name: SonarCloud Scan
       env:
