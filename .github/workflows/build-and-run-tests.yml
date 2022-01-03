@@ -24,9 +24,9 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Test
-      #run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:UseSourceLink=true --logger trx
-      run: dotnet test --blame --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
+    #- name: Generate test coverage report
+    #  #run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:UseSourceLink=true --logger trx
+    #  run: dotnet test --blame --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
 
     - name: SonarCloud Scan
       env:
@@ -37,6 +37,7 @@ jobs:
           dotnet sonarscanner begin /k:"GeneGenie.DataQuality" /o:"thegenegenieproject" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/opencover.xml"
           #dotnet sonarscanner begin /k:"GeneGenie.DataQuality" /o:"thegenegenieproject" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build
+          dotnet test --blame --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
           dotnet sonarscanner end
       #with:
       #  projectBaseDir: GeneGenie.DataQuality
