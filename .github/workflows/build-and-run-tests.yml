@@ -16,17 +16,11 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting for sonarcloud
         fetch-depth: 0
+
     - name: Setup .Net SDK (v6.0)
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x'
-    #- name: Install dependencies
-    #  run: dotnet restore
-    #- name: Build
-    #  run: dotnet build --configuration Release --no-restore
-    #- name: Generate test coverage report
-    #  #run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:UseSourceLink=true --logger trx
-    #  run: dotnet test --blame --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
 
     - name: SonarCloud Scan
       env:
@@ -35,16 +29,7 @@ jobs:
       run: |
           dotnet tool install --global dotnet-sonarscanner
           dotnet sonarscanner begin /k:"GeneGenie.DataQuality" /o:"thegenegenieproject" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/opencover.xml" /d:sonar.verbose=true
-          #dotnet sonarscanner begin /k:"GeneGenie.DataQuality" /o:"thegenegenieproject" /d:sonar.host.url="https://sonarcloud.io"
           dotnet restore
           dotnet build
-          dotnet test --blame --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=".././opencover.xml"
+          dotnet test --blame --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
           dotnet sonarscanner end
-      #with:
-      #  projectBaseDir: GeneGenie.DataQuality
-      #  args: >
-      #    -Dsonar.organization=thegenegenieproject
-      #    -Dsonar.projectKey=GeneGenie.DataQuality
-      #    -Dsonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
-      #    -Dsonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
-      #    -Dsonar.verbose=true
