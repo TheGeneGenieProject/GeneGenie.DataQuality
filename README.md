@@ -3,8 +3,7 @@
 A .Net library for analysing data from family trees. Very early stages at the moment, mostly odd analysis ideas.
 
 ## Build status
-[![Build and run tests](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build.yml)
-
+[![Build and run tests](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build-and-run-tests.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build-and-run-tests.yml)
 [![NuGet](https://img.shields.io/nuget/v/GeneGenie.DataQuality.svg)](https://www.nuget.org/packages/GeneGenie.DataQuality) 
 
 ### Code quality
