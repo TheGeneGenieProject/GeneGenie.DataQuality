@@ -8,6 +8,7 @@ A .Net library for analysing data from family trees. Very early stages at the mo
 
 ### Code quality
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=bugs)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
+[![CodeQL Analysis](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/codeql-analysis.yml)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=coverage)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
