@@ -6,6 +6,9 @@ A .Net library for analysing data from family trees. Very early stages at the mo
 [![Build and run tests](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build-and-run-tests.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build-and-run-tests.yml)
 [![NuGet](https://img.shields.io/nuget/v/GeneGenie.DataQuality.svg)](https://www.nuget.org/packages/GeneGenie.DataQuality) 
 
+[![GitHub Super-Linter](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/nvuillam/npm-groovy-lint/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ### Code quality
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=bugs)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
