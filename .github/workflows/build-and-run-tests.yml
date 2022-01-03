@@ -25,8 +25,8 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:UseSourceLink=true --logger trx
-      #run: dotnet test GeneGenie.DataQuality.Tests\GeneGenie.DataQuality.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="%CD%\opencover.xml"
+      #run: dotnet test --blame --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:UseSourceLink=true --logger trx
+      run: dotnet test GeneGenie.DataQuality.Tests\GeneGenie.DataQuality.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="./opencover.xml"
 
     - name: SonarCloud Scan
       env:
@@ -34,7 +34,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
           dotnet tool install --global dotnet-sonarscanner
-          dotnet sonarscanner begin /k:"GeneGenie.DataQuality" /o:"thegenegenieproject" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="%CD%\opencover.xml"
+          dotnet sonarscanner begin /k:"GeneGenie.DataQuality" /o:"thegenegenieproject" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/opencover.xml"
           #dotnet sonarscanner begin /k:"GeneGenie.DataQuality" /o:"thegenegenieproject" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build
           dotnet sonarscanner end
