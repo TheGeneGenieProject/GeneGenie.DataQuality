@@ -356,11 +356,6 @@ namespace GeneGenie.DataQuality
 
         private bool IsNumeric(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return false;
-            }
-
             if (value.All(char.IsNumber))
             {
                 return true;
