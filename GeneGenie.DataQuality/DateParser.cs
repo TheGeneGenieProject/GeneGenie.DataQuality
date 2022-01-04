@@ -242,6 +242,16 @@ namespace GeneGenie.DataQuality
             return dateRange;
         }
 
+        private static bool IsNumeric(string value)
+        {
+            if (value.All(char.IsNumber))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private bool ParseMonth(string dateComponent, out int month, out bool monthIsNamed)
         {
             month = MonthNumberFromName(dateComponent);
@@ -352,16 +362,6 @@ namespace GeneGenie.DataQuality
 
             var dateValue = int.Parse(dateText);
             return dateValue >= minValue && dateValue <= maxValue;
-        }
-
-        private bool IsNumeric(string value)
-        {
-            if (value.All(char.IsNumber))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
