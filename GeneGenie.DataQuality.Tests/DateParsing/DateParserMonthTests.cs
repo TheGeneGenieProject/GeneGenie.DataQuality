@@ -59,7 +59,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
         [Theory]
         [MemberData(nameof(MonthRangeData))]
-        private void Dates_with_english_month_names_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
+        public void Dates_with_english_month_names_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
         {
             var dateRange = dateParser.Parse(dateText);
 
@@ -70,7 +70,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
         [Theory]
         [MemberData(nameof(MonthMissingOtherData))]
-        private void Dates_with_partial_data_are_still_detected_but_not_valid(string dateText, DateFormat expectedFormatGuess)
+        public void Dates_with_partial_data_are_still_detected_but_not_valid(string dateText, DateFormat expectedFormatGuess)
         {
             var dateRange = dateParser.Parse(dateText);
 

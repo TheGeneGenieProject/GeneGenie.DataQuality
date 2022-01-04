@@ -123,7 +123,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
         [Theory]
         [MemberData(nameof(DateRangeData))]
-        private void Dates_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
+        public void Dates_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
         {
             var dateRange = dateParser.Parse(dateText);
 
@@ -134,7 +134,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
         [Theory]
         [MemberData(nameof(UnableToParseData))]
-        private void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateFormat expectedFormatGuess)
+        public void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateFormat expectedFormatGuess)
         {
             var dateRange = dateParser.Parse(dateText);
 

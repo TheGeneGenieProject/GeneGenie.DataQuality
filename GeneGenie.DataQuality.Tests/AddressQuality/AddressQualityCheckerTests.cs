@@ -54,7 +54,7 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
 
         [Theory]
         [MemberData(nameof(AddressQualityData))]
-        private void Address_quality_can_be_calculated_correctly(string source, AddressQualityStatus expected)
+        public void Address_quality_can_be_calculated_correctly(string source, AddressQualityStatus expected)
         {
             var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
 

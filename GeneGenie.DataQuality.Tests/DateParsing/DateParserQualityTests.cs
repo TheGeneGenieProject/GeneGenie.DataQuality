@@ -67,7 +67,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
         [Theory]
         [MemberData(nameof(ExpectedDateQualityData))]
-        private void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateQualityStatus expectedQuality)
+        public void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateQualityStatus expectedQuality)
         {
             var dateRange = dateParser.Parse(dateText);
 

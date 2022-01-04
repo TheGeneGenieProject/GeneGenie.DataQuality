@@ -39,7 +39,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
         [Theory]
         [MemberData(nameof(DateRangeScopeData))]
-        private void Dates_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateRangeScope expectedScope)
+        public void Dates_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateRangeScope expectedScope)
         {
             var dateRange = dateParser.Parse(dateText);
 
