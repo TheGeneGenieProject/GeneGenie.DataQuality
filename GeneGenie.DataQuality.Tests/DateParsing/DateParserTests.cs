@@ -67,6 +67,23 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { " " },
                 new object[] { "  " },
                 new object[] { "       " },
+
+                new object[] { "\u00A0" }, // No-Break Space.
+                new object[] { "\u2000" }, // En Quad.
+                new object[] { "\u2001" }, // Em Quad.
+                new object[] { "\u2002" }, // En Space.
+                new object[] { "\u2003" }, // Em Space.
+                new object[] { "\u2004" }, // Three-Per-Em Space.
+                new object[] { "\u2005" }, // Four-Per-Em Space.
+                new object[] { "\u2006" }, // Six-Per-Em Space.
+                new object[] { "\u2007" }, // Figure Space.
+                new object[] { "\u2008" }, // Punctuation Space.
+                new object[] { "\u2009" }, // Thin Space.
+                new object[] { "\u200A" }, // Hair Space.
+                new object[] { "\u2028" }, // Line Separator.
+                new object[] { "\u205F" }, // Medium Mathematical Space.
+                new object[] { "\u3000" }, // Ideographic Space.
+
                 new object[] { "-" },
                 new object[] { "--" },
                 new object[] { "-------" },
@@ -97,6 +114,14 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
         [Fact]
         public void Source_value_is_populated_for_corrupt_data()
+        {
+            var dateRange = dateParser.Parse("abcdef");
+
+            Assert.Equal("abcdef", dateRange.Source);
+        }
+
+        [Fact]
+        public void Source_value_is_populated_for_non_numeric_data()
         {
             var dateRange = dateParser.Parse("abcdef");
 
