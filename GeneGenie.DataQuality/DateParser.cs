@@ -252,6 +252,24 @@ namespace GeneGenie.DataQuality
             return false;
         }
 
+        private static int MonthNumberFromName(string monthName)
+        {
+            if (monthName.Length >= MinMonthNameLength)
+            {
+                for (int m = 0; m < fullEnglishMonthNames.Count; m++)
+                {
+                    var fullMonthName = fullEnglishMonthNames[m];
+
+                    if (fullMonthName.StartsWith(monthName, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        return m + 1;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
         private bool ParseMonth(string dateComponent, out int month, out bool monthIsNamed)
         {
             month = MonthNumberFromName(dateComponent);
@@ -304,24 +322,6 @@ namespace GeneGenie.DataQuality
         private bool IsMonthName(string monthName)
         {
             return MonthNumberFromName(monthName) > 0;
-        }
-
-        private int MonthNumberFromName(string monthName)
-        {
-            if (monthName.Length >= MinMonthNameLength)
-            {
-                for (int m = 0; m < fullEnglishMonthNames.Count; m++)
-                {
-                    var fullMonthName = fullEnglishMonthNames[m];
-
-                    if (fullMonthName.StartsWith(monthName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        return m + 1;
-                    }
-                }
-            }
-
-            return -1;
         }
 
         private int ExtractNumberBetween(ref List<string> dateComponents, int min, int max, out int value)
