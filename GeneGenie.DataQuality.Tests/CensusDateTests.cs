@@ -23,7 +23,9 @@ namespace GeneGenie.DataQuality.Tests
         {
             foreach (UkCensusYears censusYear in Enum.GetValues(typeof(UkCensusYears)))
             {
-                UkCensus.DateFromCensusYear(censusYear);
+                var censusDate = UkCensus.DateFromCensusYear(censusYear);
+
+                Assert.Equal((int)censusYear, censusDate.Year);
             }
         }
 
