@@ -39,4 +39,8 @@
 		<Folder Include="Properties\" />
 	</ItemGroup>
 
+	<PropertyGroup>
+		<AnalysisMode>All</AnalysisMode>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	</PropertyGroup>
 </Project>
