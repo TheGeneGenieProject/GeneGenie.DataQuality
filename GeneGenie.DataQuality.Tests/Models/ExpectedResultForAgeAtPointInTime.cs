@@ -14,6 +14,11 @@ namespace GeneGenie.DataQuality.Tests.Models
     /// </summary>
     public class ExpectedResultForAgeAtPointInTime
     {
+        /// <summary>
+        /// Instantiates an <see cref="ExpectedResultForAgeAtPointInTime"/> for testing the output of <see cref="BirthdateRangeFinder.CalculateBirthdateRange(AgeAtPointInTime)"/>.
+        /// </summary>
+        /// <param name="expected">Expected earliest date for the person to be the age passed.</param>
+        /// <param name="knownAge">The age for a person at a point in time.</param>
         public ExpectedResultForAgeAtPointInTime(DateTime expected, AgeAtPointInTime knownAge)
         {
             Expected = expected;
