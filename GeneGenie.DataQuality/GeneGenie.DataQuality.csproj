@@ -43,9 +43,4 @@
 		<Folder Include="Properties\" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-		<PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />
-	</ItemGroup>
-
 </Project>
