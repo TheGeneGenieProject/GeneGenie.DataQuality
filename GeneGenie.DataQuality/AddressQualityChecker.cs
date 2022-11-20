@@ -9,6 +9,11 @@ namespace GeneGenie.DataQuality
     using System.Linq;
     using GeneGenie.DataQuality.Models;
 
+    /// <summary>
+    /// Class for checking the quality of input data to avoid expensive lookups via
+    /// external services. Used primarily for address fields but can be extended
+    /// to look for other data.
+    /// </summary>
     public class AddressQualityChecker
     {
         private static readonly List<string> KnownJunkLocations = new List<string>
@@ -19,11 +24,24 @@ namespace GeneGenie.DataQuality
 
         private readonly DateParser dateParser;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddressQualityChecker"/> class.
+        /// </summary>
+        /// <param name="dateParser">
+        /// An instance of the date parsing class used to detect if text is a date.
+        /// </param>
         public AddressQualityChecker(DateParser dateParser)
         {
             this.dateParser = dateParser;
         }
 
+        /// <summary>
+        /// Makes a guess as to the quality of the passed data.
+        /// </summary>
+        /// <param name="source">The string data to check for quality.</param>
+        /// <returns>An enumeration from <see cref="AddressQualityStatus"/> indicating
+        /// how useful or junky the passed text was.
+        /// </returns>
         public AddressQualityStatus StatusGuessFromSourceQuality(string source)
         {
             if (string.IsNullOrWhiteSpace(source))
