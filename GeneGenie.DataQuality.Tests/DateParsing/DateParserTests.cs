@@ -115,9 +115,9 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [Fact]
         public void Source_value_is_populated_for_corrupt_data()
         {
-            var dateRange = dateParser.Parse("abcdef");
+            var dateRange = dateParser.Parse("!'£$%^&*()_+");
 
-            Assert.Equal("abcdef", dateRange.Source);
+            Assert.Equal("!'£$%^&*()_+", dateRange.Source);
         }
 
         [Fact]
