@@ -36,15 +36,10 @@ namespace GeneGenie.DataQuality.Tests
         [InlineData(UkCensusYears.Census1911, DayOfWeek.Sunday, MonthNames.Apr)]
         internal void Check_census_dates_are_on_correct_days(UkCensusYears censusYear, DayOfWeek expectedDay, MonthNames expectedMonth)
         {
-            AssertDayAndMonth(censusYear, expectedDay, expectedMonth);
-        }
-
-        private void AssertDayAndMonth(UkCensusYears censusYear, DayOfWeek day, MonthNames monthOfYear)
-        {
             var date = UkCensus.DateFromCensusYear(censusYear);
 
-            Assert.Equal(date.DayOfWeek, day);
-            Assert.Equal(date.Month, (int)monthOfYear);
+            Assert.Equal(date.DayOfWeek, expectedDay);
+            Assert.Equal(date.Month, (int)expectedMonth);
         }
     }
 }
