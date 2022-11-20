@@ -13,10 +13,10 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main, dev ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ master ]
+    branches: [ main, dev ]
   schedule:
     - cron: '23 12 * * 0'
 
@@ -40,10 +40,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup .Net SDK (v6.0)
+    - name: Setup .Net SDK (v7.0)
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
