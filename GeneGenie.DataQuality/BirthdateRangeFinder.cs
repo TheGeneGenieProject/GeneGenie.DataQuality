@@ -14,7 +14,7 @@ namespace GeneGenie.DataQuality
     /// <summary>
     /// Used to find a range of possible birth dates given a known age and date.
     /// </summary>
-    public class BirthdateRangeFinder
+    public static class BirthdateRangeFinder
     {
         /// <summary>
         /// Calculates a range of possible birthdates given a list of known ages and dates.

@@ -18,16 +18,6 @@ namespace GeneGenie.DataQuality.Tests
     /// </summary>
     public class ManyAgeAtPointInTimeUnitTests
     {
-        private readonly BirthdateRangeFinder birthDateRangeFinder;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ManyAgeAtPointInTimeUnitTests"/> class.
-        /// </summary>
-        public ManyAgeAtPointInTimeUnitTests()
-        {
-            birthDateRangeFinder = new BirthdateRangeFinder();
-        }
-
         /// <summary>
         /// Real data from Ryan's family tree as great grandmother Evans was the inspiration for these
         /// library functions (she had unexpected ages recorded against some census data).

@@ -21,7 +21,6 @@ namespace GeneGenie.DataQuality.ExtensionMethods
         {
             return serviceCollection
                 .AddTransient<AddressQualityChecker>()
-                .AddTransient<BirthdateRangeFinder>()
                 .AddTransient<DateParser>();
         }
     }

@@ -41,8 +41,6 @@ namespace GeneGenie.DataQuality.Tests
         [MemberData(nameof(Earliest_date_test_data))]
         public void Earliest_date_can_be_calculated_correctly(ExpectedResultForAgeAtPointInTime data)
         {
-            var birthDateRangeFinder = new BirthdateRangeFinder();
-
             var result = BirthdateRangeFinder.CalculateBirthdateRange(data.KnownAge);
 
             Assert.Equal(data.Expected, result.Earliest);

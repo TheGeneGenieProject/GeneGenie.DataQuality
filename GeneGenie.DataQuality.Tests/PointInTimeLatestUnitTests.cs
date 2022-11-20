@@ -38,8 +38,6 @@ namespace GeneGenie.DataQuality.Tests
         [MemberData(nameof(Latest_date_test_data))]
         internal void Latest_date_can_be_calculated_correctly(ExpectedResultForAgeAtPointInTime data)
         {
-            var birthDateRangeFinder = new BirthdateRangeFinder();
-
             var result = BirthdateRangeFinder.CalculateBirthdateRange(data.KnownAge);
 
             Assert.Equal(data.Expected, result.Latest);
