@@ -43,7 +43,7 @@ namespace GeneGenie.DataQuality.Tests
         {
             var birthDateRangeFinder = new BirthdateRangeFinder();
 
-            var result = birthDateRangeFinder.CalculateBirthdateRange(data.KnownAge);
+            var result = BirthdateRangeFinder.CalculateBirthdateRange(data.KnownAge);
 
             Assert.Equal(data.Expected, result.Earliest);
         }

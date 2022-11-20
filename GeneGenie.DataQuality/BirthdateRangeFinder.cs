@@ -23,7 +23,7 @@ namespace GeneGenie.DataQuality
         /// <returns>A <see cref="BirthdateRange"/> instance representing a possible birth
         /// date range.
         /// </returns>
-        public BirthdateRange CalculateBirthdateRange(List<AgeAtPointInTime> knownAges)
+        public static BirthdateRange CalculateBirthdateRange(List<AgeAtPointInTime> knownAges)
         {
             var birthDateRanges = new List<BirthdateRange>();
             foreach (var knownAge in knownAges)
@@ -53,7 +53,7 @@ namespace GeneGenie.DataQuality
         /// </summary>
         /// <param name="knownAge">A reported date and age for a person.</param>
         /// <returns>A range of dates that the person could have been born on.</returns>
-        public BirthdateRange CalculateBirthdateRange(AgeAtPointInTime knownAge)
+        public static BirthdateRange CalculateBirthdateRange(AgeAtPointInTime knownAge)
         {
             return new BirthdateRange
             {

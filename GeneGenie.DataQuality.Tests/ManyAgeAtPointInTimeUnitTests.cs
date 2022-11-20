@@ -43,7 +43,7 @@ namespace GeneGenie.DataQuality.Tests
                 new AgeAtPointInTime { Age = 50, Date = UkCensus.DateFromCensusYear(UkCensusYears.Census1911) },
             };
 
-            var result = birthDateRangeFinder.CalculateBirthdateRange(knownAges);
+            var result = BirthdateRangeFinder.CalculateBirthdateRange(knownAges);
 
             Assert.Equal(new DateTime(1860, 4, 3), result.Earliest);
             Assert.Equal(new DateTime(1864, 4, 5), result.Latest);
@@ -57,7 +57,7 @@ namespace GeneGenie.DataQuality.Tests
         {
             var knownAges = new List<AgeAtPointInTime>();
 
-            var result = birthDateRangeFinder.CalculateBirthdateRange(knownAges);
+            var result = BirthdateRangeFinder.CalculateBirthdateRange(knownAges);
 
             Assert.Equal(DateTime.MinValue, result.Earliest);
             Assert.Equal(DateTime.MaxValue, result.Latest);
