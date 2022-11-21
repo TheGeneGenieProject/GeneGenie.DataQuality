@@ -33,11 +33,20 @@ namespace GeneGenie.DataQuality
         // We only deal with historical dates, but just in case.
         private static readonly int MaxYear = DateTime.Now.Year + 10;
 
-        private static List<string> fullEnglishMonthNames = new List<string>
+        private static readonly List<string> fullEnglishMonthNames = new List<string>
         {
             "january", "february", "march", "april", "may", "jun", "july", "august", "september", "october", "november", "december",
         };
 
+        /// <summary>
+        /// Parses a textual input date into a date range.
+        /// The input can be a partial date such as a year and a month
+        /// which is then split into a range representing the whole month.
+        /// </summary>
+        /// <param name="value">The text to parse that should contain a user entered date string.</param>
+        /// <returns>A <see cref="DateRange"/> with the status of the parse, the source value
+        /// and the parsed date range if valid.
+        /// </returns>
         public DateRange Parse(string value)
         {
             var dateRange = new DateRange(value);
