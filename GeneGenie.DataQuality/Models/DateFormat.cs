@@ -164,8 +164,31 @@ namespace GeneGenie.DataQuality.Models
         /// </summary>
         Yyyy_dd_mmm = 17,
 
+        /// <summary>
+        /// The input was parsed as an English month name (3 characters or in full)
+        /// followed by a 1 or 2 digit day of the month and finally a 4 digit year.
+        ///
+        /// <example>
+        ///     Jan 1 1939
+        /// or
+        ///     January 2 1939
+        /// </example>
+        /// </summary>
         Mmm_dd_yyyy = 18,
+
+        /// <summary>
+        /// The input was parsed as a 1 or 2 digit day of the month
+        /// followed by an English month name (3 characters or in full)
+        /// and finally a 4 digit year.
+        ///
+        /// <example>
+        ///     1 Jan 1939
+        /// or
+        ///     1 January 1939
+        /// </example>
+        /// </summary>
         Dd_mmm_yyyy = 19,
+
         Mm = 20,
         Dd_mm = 21,
         Mm_dd = 22,
