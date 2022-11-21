@@ -189,10 +189,46 @@ namespace GeneGenie.DataQuality.Models
         /// </summary>
         Dd_mmm_yyyy = 19,
 
+        /// <summary>
+        /// The input was parsed as a 1 or 2 digit day of the month.
+        ///
+        /// <example>
+        ///     1
+        /// or
+        ///     01
+        /// </example>
+        /// </summary>
         Mm = 20,
+
+        /// <summary>
+        /// Date was found to be of the format;
+        ///     day month
+        /// where day is a maximum of 2 digits and month is a maximum of 2 digits.
+        ///
+        /// For example, 25 12 for 25th of Dec.
+        /// </summary>
         Dd_mm = 21,
+
+        /// <summary>
+        /// Date was found to be of the format;
+        ///     month day
+        /// where month is a maximum of 2 digits and day is a maximum of 2 digits.
+        ///
+        /// For example, 12 25 for 25th of Dec.
+        /// </summary>
         Mm_dd = 22,
 
+        /// <summary>
+        /// The input was parsed and we found a year in the middle which is not
+        /// a format that I've seen in the wild. For now, we give up and the user
+        /// must fix their data. If this format turns up more than a little then
+        /// I'll consider handling it.
+        /// <example>
+        ///     27 1939 9
+        /// or
+        ///     27 1939 Sep
+        /// </example>
+        /// </summary>
         UnableToParseAsYearInMiddle = 23,
     }
 }

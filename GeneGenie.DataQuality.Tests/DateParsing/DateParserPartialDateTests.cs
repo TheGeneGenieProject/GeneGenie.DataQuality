@@ -39,6 +39,8 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "1 1", DateFormat.Dd_mm },
                 new object[] { "1 13", DateFormat.Mm_dd },
                 new object[] { "13 1", DateFormat.Dd_mm },
+                new object[] { "1", DateFormat.Mm },
+                new object[] { "01", DateFormat.Mm },
             };
 
         /// <summary>
