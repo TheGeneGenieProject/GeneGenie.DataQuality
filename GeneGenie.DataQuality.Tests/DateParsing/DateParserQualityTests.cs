@@ -14,13 +14,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
     /// </summary>
     public class DateParserQualityTests
     {
-        private readonly DateParser dateParser;
-
-        public DateParserQualityTests()
-        {
-            dateParser = new DateParser();
-        }
-
         /// <summary>
         /// Gets test date values and what we expect their quality to be.
         /// </summary>
@@ -65,10 +58,18 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "12 12 1990", DateQualityStatus.MonthIsAmbiguous },
             };
 
+        /// <summary>
+        /// Tests to ensure the varying inputs to the date parser yield the
+        /// expected quality status.
+        /// </summary>
+        /// <param name="dateText">Source date text for parsing.</param>
+        /// <param name="expectedQuality">The expected quality of the text after parsing.</param>
         [Theory]
         [MemberData(nameof(ExpectedDateQualityData))]
         public void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateQualityStatus expectedQuality)
         {
+            var dateParser = new DateParser();
+
             var dateRange = dateParser.Parse(dateText);
 
             Assert.Equal(expectedQuality, dateRange.Status);
