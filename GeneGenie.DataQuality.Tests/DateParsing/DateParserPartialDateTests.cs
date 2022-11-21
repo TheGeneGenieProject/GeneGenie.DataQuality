@@ -14,16 +14,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
     /// </summary>
     public class DateParserPartialDateTests
     {
-        private readonly DateParser dateParser;
-
-        /// <summary>
-        /// Instantiates a new test instance. Only used by Xunit.
-        /// </summary>
-        public DateParserPartialDateTests()
-        {
-            dateParser = new DateParser();
-        }
-
         /// <summary>
         /// Test partial date data.
         /// </summary>
@@ -52,7 +42,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [MemberData(nameof(MonthMissingOtherData))]
         public void Dates_with_partial_data_are_still_detected_but_not_valid(string dateText, DateFormat expectedFormatGuess)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedFormatGuess, dateRange.SourceFormat);
         }

@@ -47,7 +47,7 @@ namespace GeneGenie.DataQuality
         /// <returns>A <see cref="DateRange"/> with the status of the parse, the source value
         /// and the parsed date range if valid.
         /// </returns>
-        public DateRange Parse(string value)
+        public static DateRange Parse(string value)
         {
             var dateRange = new DateRange(value);
 

@@ -22,19 +22,6 @@ namespace GeneGenie.DataQuality
             "?",
         };
 
-        private readonly DateParser dateParser;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AddressQualityChecker"/> class.
-        /// </summary>
-        /// <param name="dateParser">
-        /// An instance of the date parsing class used to detect if text is a date.
-        /// </param>
-        public AddressQualityChecker(DateParser dateParser)
-        {
-            this.dateParser = dateParser;
-        }
-
         /// <summary>
         /// Makes a guess as to the quality of the passed data.
         /// </summary>
@@ -66,7 +53,7 @@ namespace GeneGenie.DataQuality
                 return AddressQualityStatus.KnownErroneous;
             }
 
-            var date = dateParser.Parse(source);
+            var date = DateParser.Parse(source);
             if (date.DateFrom != null || date.DateTo != null)
             {
                 return AddressQualityStatus.SeemsToBeADate;

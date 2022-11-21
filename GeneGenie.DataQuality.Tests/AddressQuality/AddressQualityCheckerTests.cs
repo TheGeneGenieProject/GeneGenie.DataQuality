@@ -17,7 +17,7 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
     public class AddressQualityCheckerTests
     {
         /// <summary>
-        /// Gets test data for checking the output of <see cref="AddressQualityChecker(DateParser)"/>.
+        /// Gets test data for checking the output of <see cref="AddressQualityChecker"/>.
         /// </summary>
         public static IEnumerable<object[]> AddressQualityData =>
             new List<object[]>
@@ -48,7 +48,7 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
             };
 
         /// <summary>
-        /// Asserts that <see cref="AddressQualityChecker(DateParser)"/> handles know bad / good data.
+        /// Asserts that <see cref="AddressQualityChecker"/> handles known bad / good data.
         /// </summary>
         /// <param name="source">The text to validate.</param>
         /// <param name="expected">The expected quality status of the text after validating.</param>
@@ -56,7 +56,7 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
         [MemberData(nameof(AddressQualityData))]
         public void Address_quality_can_be_calculated_correctly(string source, AddressQualityStatus expected)
         {
-            var addressQualityChecker = new AddressQualityChecker(new DateParser());
+            var addressQualityChecker = new AddressQualityChecker();
 
             var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
 

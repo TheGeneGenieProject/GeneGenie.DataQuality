@@ -13,13 +13,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
     public class DateParserTests
     {
-        private readonly DateParser dateParser;
-
-        public DateParserTests()
-        {
-            dateParser = new DateParser();
-        }
-
         public static IEnumerable<object[]> DateRangeData =>
             new List<object[]>
             {
@@ -98,7 +91,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [Fact]
         public void Empty_does_not_throw_exception_when_parsing_date()
         {
-            var dateRange = dateParser.Parse(string.Empty);
+            var dateRange = DateParser.Parse(string.Empty);
 
             Assert.NotNull(dateRange);
         }
@@ -106,7 +99,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [Fact]
         public void Empty_result_indicates_invalid_dates()
         {
-            var dateRange = dateParser.Parse(string.Empty);
+            var dateRange = DateParser.Parse(string.Empty);
 
             Assert.Null(dateRange.DateFrom);
             Assert.Null(dateRange.DateTo);
@@ -115,7 +108,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [Fact]
         public void Source_value_is_populated_for_corrupt_data()
         {
-            var dateRange = dateParser.Parse("!'�$%^&*()_+");
+            var dateRange = DateParser.Parse("!'�$%^&*()_+");
 
             Assert.Equal("!'�$%^&*()_+", dateRange.Source);
         }
@@ -123,7 +116,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [Fact]
         public void Source_value_is_populated_for_non_numeric_data()
         {
-            var dateRange = dateParser.Parse("abcdef");
+            var dateRange = DateParser.Parse("abcdef");
 
             Assert.Equal("abcdef", dateRange.Source);
         }
@@ -131,7 +124,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [Fact]
         public void Source_value_is_populated_for_correct_data()
         {
-            var dateRange = dateParser.Parse("1997");
+            var dateRange = DateParser.Parse("1997");
 
             Assert.Equal("1997", dateRange.Source);
         }
@@ -140,7 +133,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [MemberData(nameof(DelimiterData))]
         public void Text_with_only_delimiters_indicates_invalid_dates(string dateText)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Null(dateRange.DateFrom);
             Assert.Null(dateRange.DateTo);
@@ -150,7 +143,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [MemberData(nameof(DateRangeData))]
         public void Dates_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedDateFrom, dateRange.DateFrom);
             Assert.Equal(expectedDateTo, dateRange.DateTo);
@@ -161,7 +154,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [MemberData(nameof(UnableToParseData))]
         public void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateFormat expectedFormatGuess)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedFormatGuess, dateRange.SourceFormat);
         }

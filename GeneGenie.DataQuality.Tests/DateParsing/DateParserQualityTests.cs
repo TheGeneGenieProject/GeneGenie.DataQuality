@@ -70,7 +70,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         {
             var dateParser = new DateParser();
 
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedQuality, dateRange.Status);
         }

@@ -16,16 +16,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
     /// </summary>
     public class DateParserRangeTests
     {
-        private readonly DateParser dateParser;
-
-        /// <summary>
-        /// Instantiates an instance the date parsing tests. Only used by Xunit.
-        /// </summary>
-        public DateParserRangeTests()
-        {
-            dateParser = new DateParser();
-        }
-
         /// <summary>
         /// Test data for verifying that single dates can be parsed into date ranges.
         /// </summary>
@@ -63,7 +53,7 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [MemberData(nameof(MonthRangeData))]
         public void Dates_with_english_month_names_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedDateFrom, dateRange.DateFrom);
             Assert.Equal(expectedDateTo, dateRange.DateTo);
