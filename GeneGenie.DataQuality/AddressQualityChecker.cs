@@ -14,7 +14,7 @@ namespace GeneGenie.DataQuality
     /// external services. Used primarily for address fields but can be extended
     /// to look for other data.
     /// </summary>
-    public class AddressQualityChecker
+    public static class AddressQualityChecker
     {
         private static readonly List<string> KnownJunkLocations = new List<string>
         {
@@ -29,7 +29,7 @@ namespace GeneGenie.DataQuality
         /// <returns>An enumeration from <see cref="AddressQualityStatus"/> indicating
         /// how useful or junky the passed text was.
         /// </returns>
-        public AddressQualityStatus StatusGuessFromSourceQuality(string source)
+        public static AddressQualityStatus StatusGuessFromSourceQuality(string source)
         {
             if (string.IsNullOrWhiteSpace(source))
             {

@@ -68,8 +68,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         [MemberData(nameof(ExpectedDateQualityData))]
         public void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateQualityStatus expectedQuality)
         {
-            var dateParser = new DateParser();
-
             var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedQuality, dateRange.Status);

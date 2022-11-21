@@ -19,9 +19,7 @@ namespace GeneGenie.DataQuality.ExtensionMethods
         /// <returns>The service collection with all data quality classes registered.</returns>
         public static IServiceCollection AddDataQuality(this IServiceCollection serviceCollection)
         {
-            return serviceCollection
-                .AddTransient<AddressQualityChecker>()
-                .AddTransient<DateParser>();
+            return serviceCollection;
         }
     }
 }

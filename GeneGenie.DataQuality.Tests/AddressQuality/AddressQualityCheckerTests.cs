@@ -56,9 +56,7 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
         [MemberData(nameof(AddressQualityData))]
         public void Address_quality_can_be_calculated_correctly(string source, AddressQualityStatus expected)
         {
-            var addressQualityChecker = new AddressQualityChecker();
-
-            var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
+            var status = AddressQualityChecker.StatusGuessFromSourceQuality(source);
 
             Assert.Equal(expected, status);
         }
