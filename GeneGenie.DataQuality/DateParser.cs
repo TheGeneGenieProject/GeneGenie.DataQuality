@@ -17,7 +17,7 @@ namespace GeneGenie.DataQuality
     /// <remarks>
     /// Limited to years from 50 - 2050, could do better but good enough for now.
     /// </remarks>
-    public class DateParser
+    public static class DateParser
     {
         private const int MinMonth = 1;
         private const int MaxMonth = 12;
