@@ -349,7 +349,7 @@ namespace GeneGenie.DataQuality
             return -1;
         }
 
-        private bool ParseNumberBetween(string dateComponent, int min, int max, out int value)
+        private static bool ParseNumberBetween(string dateComponent, int min, int max, out int value)
         {
             value = -1;
 

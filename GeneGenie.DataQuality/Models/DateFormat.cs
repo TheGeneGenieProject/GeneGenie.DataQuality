@@ -83,13 +83,87 @@ namespace GeneGenie.DataQuality.Models
         /// </summary>
         UnableToParse = 10,
         
+        /// <summary>
+        /// The input was parsed as an English month name. Either in full or the first 3 characters.
+        ///
+        /// <example>
+        ///     Jan or January
+        /// </example>
+        /// </summary>
         Mmm = 11,
+        
+        /// <summary>
+        /// The input was parsed as an English month name followed by the day of the month as 1 or 2 digits.
+        ///
+        /// The month was either in full or the first 3 characters.
+        ///
+        /// <example>
+        ///     Jan 12
+        /// or
+        ///     January 12
+        /// </example>
+        /// </summary>
         Mmm_dd = 12,
+
+        /// <summary>
+        /// The input was parsed as the day of the month (1 or 2 digits) followed by an
+        /// English month (3 characters or in full).
+        ///
+        /// <example>
+        ///     12 Jan
+        /// or
+        ///     12 January
+        /// </example>
+        /// </summary>
         Dd_mmm = 13,
+
+        /// <summary>
+        /// The input was parsed as a 4 digit year followed by an English month name (3 characters or in full).
+        ///
+        /// <example>
+        ///     1939 Jan
+        /// or
+        ///     1939 January
+        /// </example>
+        /// </summary>
         Yyyy_mmm = 14,
+
+        /// <summary>
+        /// The input was parsed as an English month name (3 characters or in full)
+        /// followed by a 4 digit year.
+        ///
+        /// <example>
+        ///     1939 Jan
+        /// or
+        ///     1939 January
+        /// </example>
+        /// </summary>
         Mmm_yyyy = 15,
+
+        /// <summary>
+        /// The input was parsed as a 4 digit year followed by an English month name (3 characters or in full)
+        /// and finally a 1 or 2 digit day of the month.
+        ///
+        /// <example>
+        ///     1939 Jan 1
+        /// or
+        ///     1939 January 1
+        /// </example>
+        /// </summary>
         Yyyy_mmm_dd = 16,
+
+        /// <summary>
+        /// The input was parsed as a 4 digit year followed by a 1 or 2 digit day of the month
+        /// and finally an English month name (3 characters or in full).
+        ///
+        /// <example>
+        ///     1939 1 Jan
+        /// or
+        ///     1939 1 January
+        /// </example>
+        /// </summary>
         Yyyy_dd_mmm = 17,
+
         Mmm_dd_yyyy = 18,
         Dd_mmm_yyyy = 19,
         Mm = 20,
