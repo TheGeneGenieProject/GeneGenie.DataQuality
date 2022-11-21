@@ -7,29 +7,34 @@ namespace GeneGenie.DataQuality.Models
 {
     using System;
 
-    public record DateRange
+    /// <summary>
+    /// Holds a from and to date derived from a parsed text date string.
+    /// </summary>
+    /// <param name="Source"></param>
+    public record DateRange(string Source)
     {
-        public DateRange(string source)
-        {
-            Source = source;
-        }
-
-        // Accuracy:
-        // Type: NotSet, Guess, needs attention.
-
-        // TODO: Is DateTime the correct type here? DateTimeOffset? These are historical dates, we won't always know the timezone or location.
-        // TODO: When going to the client in a view model, these should not be nullable.
+        /// <summary>
+        /// The start date parsed from the source text. The time is left as 00:00 which
+        /// is the start of the day so the whole day will be covered.
+        /// </summary>
         public DateTime? DateFrom { get; set; }
 
+        /// <summary>
+        /// The end date of parsed out of the date range. Includes a time set to just
+        /// before midnight on the close of that day so that the whole day is covered.
+        /// </summary>
         public DateTime? DateTo { get; set; }
 
-        // TODO: Ensure guessed source formats cannot be used until set to specific format.
+        /// <summary>
+        /// After parsing the data in <see cref="Source"/> this holds the
+        /// format that the code detected the data was in.
+        /// </summary>
         public DateFormat SourceFormat { get; set; }
 
         /// <summary>
         /// Holds a copy of the data that the user entered for parsing.
         /// </summary>
-        public string Source { get; init; }
+        public string Source { get; init; } = Source;
 
         /// <summary>
         /// Gets or sets an indicator for the quality of the source data.
