@@ -5,7 +5,7 @@
 
 namespace GeneGenie.DataQuality.Tests.IntegrationTests
 {
-    using GeneGenie.DataQuality.ExtensionMethods;
+    using ExtensionMethods;
     using Microsoft.Extensions.DependencyInjection;
     using Xunit;
 

@@ -5,8 +5,8 @@
 
 namespace GeneGenie.DataQuality.Tests.DateParsing
 {
-    using GeneGenie.DataQuality.Models;
     using System.Collections.Generic;
+    using DataQuality.Models;
     using Xunit;
 
     /// <summary>

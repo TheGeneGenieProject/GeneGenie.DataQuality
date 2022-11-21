@@ -8,7 +8,7 @@ namespace GeneGenie.DataQuality
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using GeneGenie.DataQuality.Models;
+    using Models;
 
     /// <summary>
     /// Used to find a range of possible birth dates given a known age and date.
@@ -39,7 +39,7 @@ namespace GeneGenie.DataQuality
                 });
             }
 
-            return new BirthdateRange()
+            return new BirthdateRange
             {
                 Earliest = birthDateRanges.Min(b => b.Earliest),
                 Latest = birthDateRanges.Max(b => b.Latest),

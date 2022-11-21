@@ -6,7 +6,7 @@
 namespace GeneGenie.DataQuality.Tests.Models
 {
     using System;
-    using GeneGenie.DataQuality.Models;
+    using DataQuality.Models;
 
     /// <summary>
     /// Used to create objects to hold test data for the expected outcome

@@ -50,7 +50,7 @@ namespace GeneGenie.DataQuality.Data
         /// <returns>The date of the census for the passed year.</returns>
         public static DateTime DateFromCensusYear(UkCensusYears year)
         {
-            return UkCensus.censusDates.Single(d => d.Year == (int)year);
+            return censusDates.Single(d => d.Year == (int)year);
         }
     }
 }

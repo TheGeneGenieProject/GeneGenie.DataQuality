@@ -7,7 +7,7 @@ namespace GeneGenie.DataQuality
 {
     using System.Collections.Generic;
     using System.Linq;
-    using GeneGenie.DataQuality.Models;
+    using Models;
 
     /// <summary>
     /// Class for checking the quality of input data to avoid expensive lookups via

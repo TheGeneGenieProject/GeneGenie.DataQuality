@@ -6,8 +6,8 @@
 namespace GeneGenie.DataQuality.Tests
 {
     using System;
-    using GeneGenie.DataQuality.Models;
-    using GeneGenie.DataQuality.Tests.Models;
+    using DataQuality.Models;
+    using Models;
 
     /// <summary>
     /// Helper functions to create test data objects.

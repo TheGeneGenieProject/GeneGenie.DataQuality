@@ -26,13 +26,13 @@ namespace GeneGenie.DataQuality.Models
         // TODO: Ensure guessed source formats cannot be used until set to specific format.
         public DateFormat SourceFormat { get; set; }
 
-        // TODO: Look at using GedcomDatePeriod from main GeneGenie project, when that's wrapped up as a nuget package.
-        public DateRangeScope Scope { get; set; }
-
+        /// <summary>
+        /// Holds a copy of the data that the user entered for parsing.
+        /// </summary>
         public string Source { get; init; }
 
         /// <summary>
-        /// Gets or sets an indicator for the quality of the date field based, used to detect incorrect data.
+        /// Gets or sets an indicator for the quality of the source data.
         /// </summary>
         public DateQualityStatus Status { get; set; }
     }

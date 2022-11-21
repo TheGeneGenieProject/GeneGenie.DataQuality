@@ -8,8 +8,8 @@ namespace GeneGenie.DataQuality
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using GeneGenie.DataQuality.ExtensionMethods;
-    using GeneGenie.DataQuality.Models;
+    using ExtensionMethods;
+    using Models;
 
     /// <summary>
     /// This is only for parsing dates from DNAGedcom, we should merge with the code from GeneGenie for fuller date parsing.
@@ -27,7 +27,7 @@ namespace GeneGenie.DataQuality
 
         private static readonly char[] DateDelimiters = { ' ', '-', '/', '\\' };
 
-        // Should not less this be 31 or lower as can be confused with the day.
+        // Should not be less than or equal to 31 as could be confused with the day.
         private static readonly int MinYear = 50;
 
         // We only deal with historical dates, but just in case.
@@ -78,7 +78,6 @@ namespace GeneGenie.DataQuality
                     year = int.Parse(dateComponents[0]);
                     dateRange.DateFrom = new DateTime(year, MinMonth, MinDay);
                     dateRange.DateTo = new DateTime(year, MaxMonth, MaxDay).EndOfDay();
-                    dateRange.Scope = DateRangeScope.DateRangeWithTimeRange;
                     dateRange.SourceFormat = DateFormat.Yyyy;
 
                     dateRange.Status = DateQualityStatus.OK;
@@ -109,7 +108,6 @@ namespace GeneGenie.DataQuality
                     {
                         dateRange.DateFrom = new DateTime(year, month, MinDay);
                         dateRange.DateTo = new DateTime(year, month, MinDay).EndOfMonth();
-                        dateRange.Scope = DateRangeScope.DateRangeWithTimeRange;
                         if (monthIsNamed)
                         {
                             dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mmm : DateFormat.Mmm_yyyy;
@@ -198,7 +196,6 @@ namespace GeneGenie.DataQuality
             {
                 dateRange.DateFrom = new DateTime(year, month, day);
                 dateRange.DateTo = new DateTime(year, month, day).EndOfDay();
-                dateRange.Scope = DateRangeScope.ExactDateWithTimeRange;
                 if (yearPos == 0)
                 {
                     if (day <= MaxMonth && !monthIsNamed)

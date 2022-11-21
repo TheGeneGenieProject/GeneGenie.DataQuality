@@ -6,7 +6,7 @@
 namespace GeneGenie.DataQuality.Tests
 {
     using System;
-    using GeneGenie.DataQuality.Data;
+    using Data;
     using Xunit;
 
     /// <summary>

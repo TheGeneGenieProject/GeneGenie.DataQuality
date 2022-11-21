@@ -7,8 +7,8 @@ namespace GeneGenie.DataQuality.Tests
 {
     using System;
     using System.Collections.Generic;
-    using GeneGenie.DataQuality.Data;
-    using GeneGenie.DataQuality.Models;
+    using Data;
+    using DataQuality.Models;
     using Xunit;
 
     /// <summary>

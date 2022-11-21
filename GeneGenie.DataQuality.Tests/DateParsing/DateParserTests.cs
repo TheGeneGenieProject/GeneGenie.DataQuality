@@ -7,8 +7,8 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 {
     using System;
     using System.Collections.Generic;
-    using GeneGenie.DataQuality.ExtensionMethods;
-    using GeneGenie.DataQuality.Models;
+    using DataQuality.Models;
+    using ExtensionMethods;
     using Xunit;
 
     public class DateParserTests
