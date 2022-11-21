@@ -288,7 +288,7 @@ namespace GeneGenie.DataQuality
             return true;
         }
 
-        private int ExtractMonth(ref List<string> dateComponents, out int month, out bool monthIsNamed)
+        private static int ExtractMonth(ref List<string> dateComponents, out int month, out bool monthIsNamed)
         {
             var monthPos = ExtractMonthByName(ref dateComponents, out month);
             monthIsNamed = monthPos >= 0;
