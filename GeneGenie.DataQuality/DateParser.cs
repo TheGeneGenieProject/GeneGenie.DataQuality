@@ -279,7 +279,7 @@ namespace GeneGenie.DataQuality
             return -1;
         }
 
-        private bool ParseMonth(string dateComponent, out int month, out bool monthIsNamed)
+        private static bool ParseMonth(string dateComponent, out int month, out bool monthIsNamed)
         {
             month = MonthNumberFromName(dateComponent);
             monthIsNamed = month > 0;
@@ -333,7 +333,7 @@ namespace GeneGenie.DataQuality
             return MonthNumberFromName(monthName) > 0;
         }
 
-        private int ExtractNumberBetween(ref List<string> dateComponents, int min, int max, out int value)
+        private static int ExtractNumberBetween(ref List<string> dateComponents, int min, int max, out int value)
         {
             value = -1;
 
