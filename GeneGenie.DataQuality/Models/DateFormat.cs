@@ -60,42 +60,42 @@ namespace GeneGenie.DataQuality.Models
         /// Could be either <see cref="Yyyy_mm_dd"/> or <see cref="Yyyy_dd_mm"/> depending on the
         /// surrounding records.
         /// </summary>
-        UnsureEndingWithDateOrMonth = 5,
+        UnsureEndingWithDateOrMonth = 6,
 
         /// <summary>
         /// The date input was parsed as a 4 digit year.
         /// </summary>
-        Yyyy = 6,
+        Yyyy = 7,
         
         /// <summary>
         /// The date input was parsed as a 4 digit year followed by 1 or 2 digits for the month.
         /// </summary>
-        Yyyy_mm = 7,
+        Yyyy_mm = 8,
         
         /// <summary>
         /// The date input was parsed as a one or two digit month followed by a 4 digit year.
         /// </summary>
-        Mm_yyyy = 8,
+        Mm_yyyy = 9,
 
         /// <summary>
         /// The input could not be parsed into one of the date formats. It's probably junk
         /// as I've been a bit excessive about trying to catch all variations.
         /// </summary>
-        UnableToParse = 9,
+        UnableToParse = 10,
         
-        Mmm = 10,
-        Mmm_dd = 11,
-        Dd_mmm = 12,
-        Yyyy_mmm = 13,
-        Mmm_yyyy = 14,
-        Yyyy_mmm_dd = 15,
-        Yyyy_dd_mmm = 16,
-        Mmm_dd_yyyy = 17,
-        Dd_mmm_yyyy = 18,
-        Mm = 19,
-        Dd_mm = 20,
-        Mm_dd = 21,
+        Mmm = 11,
+        Mmm_dd = 12,
+        Dd_mmm = 13,
+        Yyyy_mmm = 14,
+        Mmm_yyyy = 15,
+        Yyyy_mmm_dd = 16,
+        Yyyy_dd_mmm = 17,
+        Mmm_dd_yyyy = 18,
+        Dd_mmm_yyyy = 19,
+        Mm = 20,
+        Dd_mm = 21,
+        Mm_dd = 22,
 
-        UnableToParseAsYearInMiddle = 22,
+        UnableToParseAsYearInMiddle = 23,
     }
 }

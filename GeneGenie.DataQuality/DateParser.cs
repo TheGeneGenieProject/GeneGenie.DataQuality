@@ -312,7 +312,7 @@ namespace GeneGenie.DataQuality
             return monthPos;
         }
 
-        private int ExtractMonthByName(ref List<string> dateComponents, out int month)
+        private static int ExtractMonthByName(ref List<string> dateComponents, out int month)
         {
             month = -1;
 
@@ -328,7 +328,7 @@ namespace GeneGenie.DataQuality
             return -1;
         }
 
-        private bool IsMonthName(string monthName)
+        private static bool IsMonthName(string monthName)
         {
             return MonthNumberFromName(monthName) > 0;
         }
@@ -362,7 +362,7 @@ namespace GeneGenie.DataQuality
             return false;
         }
 
-        private bool TextIsNumberBetween(string dateText, int minValue, int maxValue)
+        private static bool TextIsNumberBetween(string dateText, int minValue, int maxValue)
         {
             if (!IsNumeric(dateText))
             {
