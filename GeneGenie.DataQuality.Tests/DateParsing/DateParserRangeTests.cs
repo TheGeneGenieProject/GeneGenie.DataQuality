@@ -1,4 +1,4 @@
-// <copyright file="DateParserMonthTests.cs" company="GeneGenie.com">
+// <copyright file="DateParserRangeTests.cs" company="GeneGenie.com">
 // Copyright (c) GeneGenie.com. All Rights Reserved.
 // Licensed under the GNU Affero General Public License v3.0. See LICENSE in the project root for license information.
 // </copyright>
@@ -11,15 +11,24 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
     using GeneGenie.DataQuality.Models;
     using Xunit;
 
-    public class DateParserMonthTests
+    /// <summary>
+    /// Tests for ensuring a date or partial date can be parsed into a date range.
+    /// </summary>
+    public class DateParserRangeTests
     {
         private readonly DateParser dateParser;
 
-        public DateParserMonthTests()
+        /// <summary>
+        /// Instantiates an instance the date parsing tests. Only used by Xunit.
+        /// </summary>
+        public DateParserRangeTests()
         {
             dateParser = new DateParser();
         }
 
+        /// <summary>
+        /// Test data for verifying that single dates can be parsed into date ranges.
+        /// </summary>
         public static IEnumerable<object[]> MonthRangeData =>
             new List<object[]>
             {
@@ -43,20 +52,13 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "27 September 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Dd_mmm_yyyy },
             };
 
-        public static IEnumerable<object[]> MonthMissingOtherData =>
-            new List<object[]>
-            {
-                new object[] { "January", DateFormat.Mmm },
-                new object[] { "Jan", DateFormat.Mmm },
-                new object[] { "Jan 1", DateFormat.Mmm_dd },
-                new object[] { "1 Jan", DateFormat.Dd_mmm },
-                new object[] { "January 1", DateFormat.Mmm_dd },
-                new object[] { "1 January", DateFormat.Dd_mmm },
-                new object[] { "1 1", DateFormat.Dd_mm },
-                new object[] { "1 13", DateFormat.Mm_dd },
-                new object[] { "13 1", DateFormat.Dd_mm },
-            };
-
+        /// <summary>
+        /// Tests for checking that a textual date can be parsed into a date range and format.
+        /// </summary>
+        /// <param name="dateText">The source date text to parse.</param>
+        /// <param name="expectedDateFrom">The start of the date range we expect to find after parsing.</param>
+        /// <param name="expectedDateTo">The end of the date range we expect to find after parsing.</param>
+        /// <param name="expectedFormatGuess">The format we expect that the source date text is in.</param>
         [Theory]
         [MemberData(nameof(MonthRangeData))]
         public void Dates_with_english_month_names_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
@@ -65,15 +67,6 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
 
             Assert.Equal(expectedDateFrom, dateRange.DateFrom);
             Assert.Equal(expectedDateTo, dateRange.DateTo);
-            Assert.Equal(expectedFormatGuess, dateRange.SourceFormat);
-        }
-
-        [Theory]
-        [MemberData(nameof(MonthMissingOtherData))]
-        public void Dates_with_partial_data_are_still_detected_but_not_valid(string dateText, DateFormat expectedFormatGuess)
-        {
-            var dateRange = dateParser.Parse(dateText);
-
             Assert.Equal(expectedFormatGuess, dateRange.SourceFormat);
         }
     }
