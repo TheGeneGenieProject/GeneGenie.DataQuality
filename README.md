@@ -4,7 +4,7 @@ A .Net library for analysing data from family trees. Very early stages at the mo
 
 ## Build status
 [![Build and run tests](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/sonar.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/sonar.yml)
-[![NuGet](https://img.shields.io/nuget/v/GeneGenie.DataQuality.svg)](https://www.nuget.org/packages/GeneGenie.DataQuality) 
+<!-- [![NuGet](https://img.shields.io/nuget/v/GeneGenie.DataQuality.svg)](https://www.nuget.org/packages/GeneGenie.DataQuality) -->
 
 ### Code quality
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=bugs)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
