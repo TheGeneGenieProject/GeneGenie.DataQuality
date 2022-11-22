@@ -46,12 +46,9 @@ namespace GeneGenie.DataQuality
         /// </returns>
         public static DateRange Parse(string value)
         {
-            var dateRange = new DateRange(value);
-
             if (string.IsNullOrWhiteSpace(value))
             {
-                dateRange.Status = DateQualityStatus.Empty;
-                return dateRange;
+                return new DateRange(value) { Status = DateQualityStatus.Empty };
             }
 
             var dateComponents = value
@@ -60,26 +57,27 @@ namespace GeneGenie.DataQuality
                 .ToList();
             if (dateComponents.Count == 0 || dateComponents.Count > 3)
             {
-                dateRange.Status = DateQualityStatus.TooManyDateParts;
-                return dateRange;
+                return new DateRange(value) { Status = DateQualityStatus.TooManyDateParts };
             }
 
             if (dateComponents.Count == 1)
             {
-                return ParseSingleComponent(dateRange, ref dateComponents);
+                return ParseSingleComponent(value, ref dateComponents);
             }
 
             if (dateComponents.Count == 2)
             {
-                return ParseTwoComponents(dateRange, ref dateComponents);
+                return ParseTwoComponents(value, ref dateComponents);
             }
 
             // Must be 3 parts in the date, extract the year and record where we found it.
-            return ParseThreeComponents(dateRange, ref dateComponents);
+            return ParseThreeComponents(value, ref dateComponents);
         }
 
-        private static DateRange ParseSingleComponent(DateRange dateRange, ref List<string> dateComponents)
+        private static DateRange ParseSingleComponent(string value, ref List<string> dateComponents)
         {
+            var dateRange = new DateRange(value);
+
             // Just a year?
             if (TextIsNumberBetween(dateComponents[0], MinYear, MaxYear))
             {
@@ -106,8 +104,9 @@ namespace GeneGenie.DataQuality
             return dateRange;
         }
 
-        private static DateRange ParseTwoComponents(DateRange dateRange, ref List<string> dateComponents)
+        private static DateRange ParseTwoComponents(string value, ref List<string> dateComponents)
         {
+            var dateRange = new DateRange(value);
             var yearPos = ExtractNumberBetween(ref dateComponents, MinYear, MaxYear, out var year);
             var monthPos = ExtractMonth(ref dateComponents, out var month, out var monthIsNamed);
 
@@ -127,32 +126,31 @@ namespace GeneGenie.DataQuality
                     }
 
                     dateRange.Status = DateQualityStatus.OK;
+                    return dateRange;
+                }
+
+                if (monthIsNamed)
+                {
+                    dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mmm_dd : DateFormat.Dd_mmm;
                 }
                 else
                 {
-                    if (monthIsNamed)
-                    {
-                        dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mmm_dd : DateFormat.Dd_mmm;
-                    }
-                    else
-                    {
-                        dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mm_dd : DateFormat.Dd_mm;
-                    }
-
-                    dateRange.Status = DateQualityStatus.NotValid;
+                    dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mm_dd : DateFormat.Dd_mm;
                 }
-            }
-            else
-            {
-                dateRange.SourceFormat = DateFormat.UnableToParse;
+
                 dateRange.Status = DateQualityStatus.NotValid;
+                return dateRange;
             }
+
+            dateRange.SourceFormat = DateFormat.UnableToParse;
+            dateRange.Status = DateQualityStatus.NotValid;
 
             return dateRange;
         }
 
-        private static DateRange ParseThreeComponents(DateRange dateRange, ref List<string> dateComponents)
+        private static DateRange ParseThreeComponents(string value, ref List<string> dateComponents)
         {
+            var dateRange = new DateRange(value);
             var yearPos = ExtractNumberBetween(ref dateComponents, MinYear, MaxYear, out var year);
 
             if (yearPos == -1)
