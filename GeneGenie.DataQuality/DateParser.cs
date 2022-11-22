@@ -7,6 +7,7 @@ namespace GeneGenie.DataQuality
 {
     using ExtensionMethods;
     using Models;
+    using System;
 
     /// <summary>
     /// This is only for parsing dates from DNAGedcom, we should merge with the code from GeneGenie for fuller date parsing.
@@ -171,11 +172,53 @@ namespace GeneGenie.DataQuality
                 return dateRange;
             }
 
+            var monthAndDayPositions = CalculateMonthAndDayPositions(dateComponents, yearPos);
+
+            if (monthAndDayPositions.DayPos < 0 || monthAndDayPositions.MonthPos < 0)
+            {
+                dateRange.SourceFormat = DateFormat.UnableToParse;
+                dateRange.Status = DateQualityStatus.NotValid;
+                return dateRange;
+            }
+
+            dateRange.DateFrom = new DateTime(year, monthAndDayPositions.Month, monthAndDayPositions.Day);
+            dateRange.DateTo = new DateTime(year, monthAndDayPositions.Month, monthAndDayPositions.Day).EndOfDay();
+
+            if (yearPos == 0)
+            {
+                if (monthAndDayPositions.Day <= MaxMonth && !monthAndDayPositions.MonthIsNamed)
+                {
+                    dateRange.SourceFormat = DateFormat.UnsureEndingWithDateOrMonth;
+                    dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
+                }
+                else
+                {
+                    dateRange.SourceFormat = FormatFromMonthPositionWithYearPrefix(monthAndDayPositions);
+                    dateRange.Status = DateQualityStatus.OK;
+                }
+            }
+            else
+            {
+                if (monthAndDayPositions.Day <= MaxMonth && !monthAndDayPositions.MonthIsNamed)
+                {
+                    dateRange.SourceFormat = DateFormat.UnsureStartingWithDateOrMonth;
+                    dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
+                }
+                else
+                {
+                    dateRange.SourceFormat = FormatFromMonthPositionWithYearSuffix(monthAndDayPositions);
+                    dateRange.Status = DateQualityStatus.OK;
+                }
+            }
+
+            return dateRange;
+        }
+
+        private static MonthAndDayPositions CalculateMonthAndDayPositions(List<string> dateComponents, int yearPos)
+        {
             // If year is at the start, it'll offset where we look for day and month by 1.
             int yearOffset = yearPos == 0 ? 1 : 0;
-
-            // Is either of the two positions definitely an English language month (May, August etc.)?
-            int month, day, monthPos = -1, dayPos = -1;
+            int monthPos = -1, dayPos = -1, month, day;
             bool monthIsNamed;
 
             // Check if either of the other two positions can't be a month.
@@ -206,64 +249,31 @@ namespace GeneGenie.DataQuality
                 }
             }
 
-            if (dayPos < 0 || monthPos < 0)
-            {
-                dateRange.SourceFormat = DateFormat.UnableToParse;
-                dateRange.Status = DateQualityStatus.NotValid;
-                return dateRange;
-            }
-
-            dateRange.DateFrom = new DateTime(year, month, day);
-            dateRange.DateTo = new DateTime(year, month, day).EndOfDay();
-
-            if (yearPos == 0)
-            {
-                if (day <= MaxMonth && !monthIsNamed)
-                {
-                    dateRange.SourceFormat = DateFormat.UnsureEndingWithDateOrMonth;
-                    dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
-                }
-                else
-                {
-                    dateRange.SourceFormat = FormatFromMonthPositionWithYearPrefix(monthPos, dayPos, monthIsNamed);
-                    dateRange.Status = DateQualityStatus.OK;
-                }
-            }
-            else
-            {
-                if (day <= MaxMonth && !monthIsNamed)
-                {
-                    dateRange.SourceFormat = DateFormat.UnsureStartingWithDateOrMonth;
-                    dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
-                }
-                else
-                {
-                    dateRange.SourceFormat = FormatFromMonthPositionWithYearSuffix(monthPos, dayPos, monthIsNamed);
-                    dateRange.Status = DateQualityStatus.OK;
-                }
-            }
-
-            return dateRange;
+            return new MonthAndDayPositions(month, day, monthPos, dayPos, monthIsNamed);
         }
 
-        private static DateFormat FormatFromMonthPositionWithYearSuffix(int monthPos, int dayPos, bool monthIsNamed)
+        private sealed record MonthAndDayPositions(int Month, int Day, int MonthPos, int DayPos, bool MonthIsNamed)
         {
-            if (monthIsNamed)
-            {
-                return dayPos > monthPos ? DateFormat.Mmm_dd_yyyy : DateFormat.Dd_mmm_yyyy;
-            }
-
-            return dayPos > monthPos ? DateFormat.Mm_dd_yyyy : DateFormat.Dd_mm_yyyy;
         }
 
-        private static DateFormat FormatFromMonthPositionWithYearPrefix(int monthPos, int dayPos, bool monthIsNamed)
+        private static DateFormat FormatFromMonthPositionWithYearSuffix(MonthAndDayPositions monthAndDayPositions)
         {
-            if (monthIsNamed)
+            if (monthAndDayPositions.MonthIsNamed)
             {
-                return dayPos > monthPos ? DateFormat.Yyyy_mmm_dd : DateFormat.Yyyy_dd_mmm;
+                return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Mmm_dd_yyyy : DateFormat.Dd_mmm_yyyy;
             }
 
-            return dayPos > monthPos ? DateFormat.Yyyy_mm_dd : DateFormat.Yyyy_dd_mm;
+            return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Mm_dd_yyyy : DateFormat.Dd_mm_yyyy;
+        }
+
+        private static DateFormat FormatFromMonthPositionWithYearPrefix(MonthAndDayPositions monthAndDayPositions)
+        {
+            if (monthAndDayPositions.MonthIsNamed)
+            {
+                return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Yyyy_mmm_dd : DateFormat.Yyyy_dd_mmm;
+            }
+
+            return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Yyyy_mm_dd : DateFormat.Yyyy_dd_mm;
         }
 
         private static bool IsNumeric(string value)
