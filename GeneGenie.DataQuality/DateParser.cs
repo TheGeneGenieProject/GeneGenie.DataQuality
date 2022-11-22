@@ -216,15 +216,7 @@ namespace GeneGenie.DataQuality
                     }
                     else
                     {
-                        if (monthIsNamed)
-                        {
-                            dateRange.SourceFormat = dayPos > monthPos ? DateFormat.Yyyy_mmm_dd : DateFormat.Yyyy_dd_mmm;
-                        }
-                        else
-                        {
-                            dateRange.SourceFormat = dayPos > monthPos ? DateFormat.Yyyy_mm_dd : DateFormat.Yyyy_dd_mm;
-                        }
-
+                        dateRange.SourceFormat = FormatFromMonthPositionWithYearPrefix(monthPos, dayPos, monthIsNamed);
                         dateRange.Status = DateQualityStatus.OK;
                     }
                 }
@@ -237,15 +229,7 @@ namespace GeneGenie.DataQuality
                     }
                     else
                     {
-                        if (monthIsNamed)
-                        {
-                            dateRange.SourceFormat = dayPos > monthPos ? DateFormat.Mmm_dd_yyyy : DateFormat.Dd_mmm_yyyy;
-                        }
-                        else
-                        {
-                            dateRange.SourceFormat = dayPos > monthPos ? DateFormat.Mm_dd_yyyy : DateFormat.Dd_mm_yyyy;
-                        }
-
+                        dateRange.SourceFormat = FormatFromMonthPositionWithYearSuffix(monthPos, dayPos, monthIsNamed);
                         dateRange.Status = DateQualityStatus.OK;
                     }
                 }
@@ -257,6 +241,26 @@ namespace GeneGenie.DataQuality
             }
 
             return dateRange;
+        }
+
+        private static DateFormat FormatFromMonthPositionWithYearSuffix(int monthPos, int dayPos, bool monthIsNamed)
+        {
+            if (monthIsNamed)
+            {
+                return dayPos > monthPos ? DateFormat.Mmm_dd_yyyy : DateFormat.Dd_mmm_yyyy;
+            }
+
+            return dayPos > monthPos ? DateFormat.Mm_dd_yyyy : DateFormat.Dd_mm_yyyy;
+        }
+
+        private static DateFormat FormatFromMonthPositionWithYearPrefix(int monthPos, int dayPos, bool monthIsNamed)
+        {
+            if (monthIsNamed)
+            {
+                return dayPos > monthPos ? DateFormat.Yyyy_mmm_dd : DateFormat.Yyyy_dd_mmm;
+            }
+
+            return dayPos > monthPos ? DateFormat.Yyyy_mm_dd : DateFormat.Yyyy_dd_mm;
         }
 
         private static bool IsNumeric(string value)
