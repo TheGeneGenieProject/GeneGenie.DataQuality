@@ -154,7 +154,7 @@ namespace GeneGenie.DataQuality
             return dateRange;
         }
 
-        private static DateRange ParseThreeComponents(DateRange dateRange, ref List<string> dateComponents) //, out int year, out int month, out int day, out int yearPos, ref int monthPos, ref int dayPos, out bool monthIsNamed)
+        private static DateRange ParseThreeComponents(DateRange dateRange, ref List<string> dateComponents)
         {
             var yearPos = ExtractNumberBetween(ref dateComponents, MinYear, MaxYear, out var year);
 
