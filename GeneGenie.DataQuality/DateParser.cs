@@ -78,7 +78,80 @@ namespace GeneGenie.DataQuality
             }
 
             // Must be 3 parts in the date, extract the year and record where we found it.
-            return ParseThreeComponents(dateRange, ref dateComponents); //, out year, out month, out day, out yearPos, ref monthPos, ref dayPos, out monthIsNamed);
+            return ParseThreeComponents(dateRange, ref dateComponents);
+        }
+
+        private static DateRange ParseSingleComponent(DateRange dateRange, ref List<string> dateComponents)
+        {
+            // Just a year?
+            if (TextIsNumberBetween(dateComponents[0], MinYear, MaxYear))
+            {
+                var year = int.Parse(dateComponents[0]);
+                dateRange.DateFrom = new DateTime(year, MinMonth, MinDay);
+                dateRange.DateTo = new DateTime(year, MaxMonth, MaxDay).EndOfDay();
+                dateRange.SourceFormat = DateFormat.Yyyy;
+
+                dateRange.Status = DateQualityStatus.OK;
+                return dateRange;
+            }
+
+            // Just a month?
+            if (ExtractMonth(ref dateComponents, out var _, out var monthIsNamed) >= 0)
+            {
+                dateRange.SourceFormat = monthIsNamed ? DateFormat.Mmm : DateFormat.Mm;
+                dateRange.Status = DateQualityStatus.OnlyMonthIsPresent;
+                return dateRange;
+            }
+
+            dateRange.SourceFormat = DateFormat.UnableToParse;
+            dateRange.Status = DateQualityStatus.NotValid;
+
+            return dateRange;
+        }
+
+        private static DateRange ParseTwoComponents(DateRange dateRange, ref List<string> dateComponents)
+        {
+            var yearPos = ExtractNumberBetween(ref dateComponents, MinYear, MaxYear, out var year);
+            var monthPos = ExtractMonth(ref dateComponents, out var month, out var monthIsNamed);
+
+            if (monthPos >= 0)
+            {
+                if (yearPos >= 0)
+                {
+                    dateRange.DateFrom = new DateTime(year, month, MinDay);
+                    dateRange.DateTo = new DateTime(year, month, MinDay).EndOfMonth();
+                    if (monthIsNamed)
+                    {
+                        dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mmm : DateFormat.Mmm_yyyy;
+                    }
+                    else
+                    {
+                        dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mm : DateFormat.Mm_yyyy;
+                    }
+
+                    dateRange.Status = DateQualityStatus.OK;
+                }
+                else
+                {
+                    if (monthIsNamed)
+                    {
+                        dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mmm_dd : DateFormat.Dd_mmm;
+                    }
+                    else
+                    {
+                        dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mm_dd : DateFormat.Dd_mm;
+                    }
+
+                    dateRange.Status = DateQualityStatus.NotValid;
+                }
+            }
+            else
+            {
+                dateRange.SourceFormat = DateFormat.UnableToParse;
+                dateRange.Status = DateQualityStatus.NotValid;
+            }
+
+            return dateRange;
         }
 
         private static DateRange ParseThreeComponents(DateRange dateRange, ref List<string> dateComponents) //, out int year, out int month, out int day, out int yearPos, ref int monthPos, ref int dayPos, out bool monthIsNamed)
@@ -187,79 +260,6 @@ namespace GeneGenie.DataQuality
                 dateRange.SourceFormat = DateFormat.UnableToParse;
                 dateRange.Status = DateQualityStatus.NotValid;
             }
-
-            return dateRange;
-        }
-
-        private static DateRange ParseTwoComponents(DateRange dateRange, ref List<string> dateComponents)
-        {
-            var yearPos = ExtractNumberBetween(ref dateComponents, MinYear, MaxYear, out var year);
-            var monthPos = ExtractMonth(ref dateComponents, out var month, out var monthIsNamed);
-
-            if (monthPos >= 0)
-            {
-                if (yearPos >= 0)
-                {
-                    dateRange.DateFrom = new DateTime(year, month, MinDay);
-                    dateRange.DateTo = new DateTime(year, month, MinDay).EndOfMonth();
-                    if (monthIsNamed)
-                    {
-                        dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mmm : DateFormat.Mmm_yyyy;
-                    }
-                    else
-                    {
-                        dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mm : DateFormat.Mm_yyyy;
-                    }
-
-                    dateRange.Status = DateQualityStatus.OK;
-                }
-                else
-                {
-                    if (monthIsNamed)
-                    {
-                        dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mmm_dd : DateFormat.Dd_mmm;
-                    }
-                    else
-                    {
-                        dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mm_dd : DateFormat.Dd_mm;
-                    }
-
-                    dateRange.Status = DateQualityStatus.NotValid;
-                }
-            }
-            else
-            {
-                dateRange.SourceFormat = DateFormat.UnableToParse;
-                dateRange.Status = DateQualityStatus.NotValid;
-            }
-
-            return dateRange;
-        }
-
-        private static DateRange ParseSingleComponent(DateRange dateRange, ref List<string> dateComponents)
-        {
-            // Just a year?
-            if (TextIsNumberBetween(dateComponents[0], MinYear, MaxYear))
-            {
-                var year = int.Parse(dateComponents[0]);
-                dateRange.DateFrom = new DateTime(year, MinMonth, MinDay);
-                dateRange.DateTo = new DateTime(year, MaxMonth, MaxDay).EndOfDay();
-                dateRange.SourceFormat = DateFormat.Yyyy;
-
-                dateRange.Status = DateQualityStatus.OK;
-                return dateRange;
-            }
-
-            // Just a month?
-            if (ExtractMonth(ref dateComponents, out var _, out var monthIsNamed) >= 0)
-            {
-                dateRange.SourceFormat = monthIsNamed ? DateFormat.Mmm : DateFormat.Mm;
-                dateRange.Status = DateQualityStatus.OnlyMonthIsPresent;
-                return dateRange;
-            }
-
-            dateRange.SourceFormat = DateFormat.UnableToParse;
-            dateRange.Status = DateQualityStatus.NotValid;
 
             return dateRange;
         }
