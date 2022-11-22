@@ -5,9 +5,9 @@
 
 namespace GeneGenie.DataQuality.Models
 {
-    // TODO: Can probably merge with GeneGenie.Gedcom formats.
     /// <summary>
     /// When parsed a date will be in one of these formats.
+    /// Possibly this and GeneGenie.Gedcom formats could be merged.
     /// </summary>
     public enum DateFormat
     {
