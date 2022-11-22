@@ -5,9 +5,7 @@
 
 namespace GeneGenie.DataQuality.Tests.DateParsing
 {
-    using System.Collections.Generic;
     using DataQuality.Models;
-    using Xunit;
 
     /// <summary>
     /// Tests to check that the quality rating of the source values for dates can be parsed.

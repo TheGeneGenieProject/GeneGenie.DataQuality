@@ -5,9 +5,7 @@
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using System;
     using Data;
-    using Xunit;
 
     /// <summary>
     /// Tests to ensure year census enum parses OK.

@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.Models
 {
-    using System;
-
     /// <summary>
     /// Stores the earliest and latest possible dates for a birthdate based on a persons' age.
     /// </summary>

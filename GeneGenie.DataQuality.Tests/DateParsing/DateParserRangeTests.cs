@@ -5,11 +5,8 @@
 
 namespace GeneGenie.DataQuality.Tests.DateParsing
 {
-    using System;
-    using System.Collections.Generic;
     using DataQuality.Models;
     using ExtensionMethods;
-    using Xunit;
 
     /// <summary>
     /// Tests for ensuring a date or partial date can be parsed into a date range.

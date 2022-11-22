@@ -5,9 +5,7 @@
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using System;
     using Data;
-    using Xunit;
 
     /// <summary>
     /// Sanity checks to ensure the days of the census' are correct.

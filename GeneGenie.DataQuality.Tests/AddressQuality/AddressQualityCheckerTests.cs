@@ -5,9 +5,7 @@
 
 namespace GeneGenie.DataQuality.Tests.AddressQuality
 {
-    using System.Collections.Generic;
     using DataQuality.Models;
-    using Xunit;
 
     /// <summary>
     /// Tests to ensure that we don't do an expensive lookup on known junk addresses.

@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.Models
 {
-    using System;
-
     /// <summary>
     /// Holds a from and to date derived from a parsed text date string.
     /// </summary>

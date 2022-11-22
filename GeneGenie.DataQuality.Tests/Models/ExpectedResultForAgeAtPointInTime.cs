@@ -5,7 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests.Models
 {
-    using System;
     using DataQuality.Models;
 
     /// <summary>

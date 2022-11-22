@@ -5,11 +5,8 @@
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using System;
-    using System.Collections.Generic;
     using Data;
     using DataQuality.Models;
-    using Xunit;
 
     /// <summary>
     /// Tests to check that multiple <see cref="AgeAtPointInTime"/> instances can be

@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.Models
 {
-    using System;
-
     /// <summary>
     /// Holds the age of a person at a specific point in time.
     /// </summary>

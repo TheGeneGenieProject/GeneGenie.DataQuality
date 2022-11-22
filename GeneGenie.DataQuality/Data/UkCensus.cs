@@ -5,10 +5,6 @@
 
 namespace GeneGenie.DataQuality.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// Data and helper function to find specific dates based on UK census years.
     /// </summary>
