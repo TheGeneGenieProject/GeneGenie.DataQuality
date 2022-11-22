@@ -11,8 +11,14 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
     using ExtensionMethods;
     using Xunit;
 
+    /// <summary>
+    /// Tests for checking that the date parsing code passes and fails as expected.
+    /// </summary>
     public class DateParserTests
     {
+        /// <summary>
+        /// Data for checking that dates can be parsed into date ranges and the formats are detected correctly.
+        /// </summary>
         public static IEnumerable<object[]> DateRangeData =>
             new List<object[]>
             {
@@ -32,6 +38,9 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "27 9 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Dd_mm_yyyy },
             };
 
+        /// <summary>
+        /// Data that tests that junk source values are detected as junk and not parsed as valid data.
+        /// </summary>
         public static IEnumerable<object[]> UnableToParseData =>
             new List<object[]>
             {
@@ -54,6 +63,9 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "mm dd 2000", DateFormat.UnableToParse },
             };
 
+        /// <summary>
+        /// Test data for checking if delimiters cause issues with parsing.
+        /// </summary>
         public static IEnumerable<object[]> DelimiterData =>
             new List<object[]>
             {
@@ -88,6 +100,9 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "////////" },
             };
 
+        /// <summary>
+        /// Tests that a blank string does not cause the parsing to fail.
+        /// </summary>
         [Fact]
         public void Empty_does_not_throw_exception_when_parsing_date()
         {
@@ -96,8 +111,11 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             Assert.NotNull(dateRange);
         }
 
+        /// <summary>
+        /// Tests that a blank string yields empty date results.
+        /// </summary>
         [Fact]
-        public void Empty_result_indicates_invalid_dates()
+        public void Empty_yields_invalid_dates()
         {
             var dateRange = DateParser.Parse(string.Empty);
 
@@ -105,6 +123,10 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             Assert.Null(dateRange.DateTo);
         }
 
+        /// <summary>
+        /// Checks that the <see cref="DateRange.Source"/> property is populated
+        /// even when passed totally junk data.
+        /// </summary>
         [Fact]
         public void Source_value_is_populated_for_corrupt_data()
         {
@@ -113,6 +135,10 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             Assert.Equal("!'�$%^&*()_+", dateRange.Source);
         }
 
+        /// <summary>
+        /// Checks that the <see cref="DateRange.Source"/> property is populated
+        /// when passed alphabetical data.
+        /// </summary>
         [Fact]
         public void Source_value_is_populated_for_non_numeric_data()
         {
@@ -121,6 +147,10 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             Assert.Equal("abcdef", dateRange.Source);
         }
 
+        /// <summary>
+        /// Checks that the <see cref="DateRange.Source"/> property is populated
+        /// when passed valid data.
+        /// </summary>
         [Fact]
         public void Source_value_is_populated_for_correct_data()
         {
@@ -129,6 +159,10 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             Assert.Equal("1997", dateRange.Source);
         }
 
+        /// <summary>
+        /// Tests that text made up only of delimiters is not parsed as valid data.
+        /// </summary>
+        /// <param name="dateText"></param>
         [Theory]
         [MemberData(nameof(DelimiterData))]
         public void Text_with_only_delimiters_indicates_invalid_dates(string dateText)
@@ -139,6 +173,13 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             Assert.Null(dateRange.DateTo);
         }
 
+        /// <summary>
+        /// Tests that a date can be parsed and expanded into a date range.
+        /// </summary>
+        /// <param name="dateText">The text to parse.</param>
+        /// <param name="expectedDateFrom">The expected start of the resulting date range.</param>
+        /// <param name="expectedDateTo">The expected end of the resulting date range.</param>
+        /// <param name="expectedFormatGuess">The format we expect to be detected from the source text.</param>
         [Theory]
         [MemberData(nameof(DateRangeData))]
         public void Dates_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
@@ -150,6 +191,11 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
             Assert.Equal(expectedFormatGuess, dateRange.SourceFormat);
         }
 
+        /// <summary>
+        /// Tests that dates that have years in the middle are not parsed as this does not seem to be a format anyone would use.
+        /// </summary>
+        /// <param name="dateText"></param>
+        /// <param name="expectedFormatGuess"></param>
         [Theory]
         [MemberData(nameof(UnableToParseData))]
         public void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateFormat expectedFormatGuess)
