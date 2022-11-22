@@ -116,14 +116,7 @@ namespace GeneGenie.DataQuality
                 {
                     dateRange.DateFrom = new DateTime(year, month, MinDay);
                     dateRange.DateTo = new DateTime(year, month, MinDay).EndOfMonth();
-                    if (monthIsNamed)
-                    {
-                        dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mmm : DateFormat.Mmm_yyyy;
-                    }
-                    else
-                    {
-                        dateRange.SourceFormat = yearPos < monthPos ? DateFormat.Yyyy_mm : DateFormat.Mm_yyyy;
-                    }
+                    dateRange.SourceFormat = FormatFromMonthAndYearPosition(yearPos, monthPos, monthIsNamed);
 
                     dateRange.Status = DateQualityStatus.OK;
                     return dateRange;
@@ -146,6 +139,16 @@ namespace GeneGenie.DataQuality
             dateRange.Status = DateQualityStatus.NotValid;
 
             return dateRange;
+        }
+
+        private static DateFormat FormatFromMonthAndYearPosition(int yearPos, int monthPos, bool monthIsNamed)
+        {
+            if (monthIsNamed)
+            {
+                return yearPos < monthPos ? DateFormat.Yyyy_mmm : DateFormat.Mmm_yyyy;
+            }
+
+            return yearPos < monthPos ? DateFormat.Yyyy_mm : DateFormat.Mm_yyyy;
         }
 
         private static DateRange ParseThreeComponents(string value, ref List<string> dateComponents)
