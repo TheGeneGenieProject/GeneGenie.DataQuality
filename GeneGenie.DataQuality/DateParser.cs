@@ -206,41 +206,41 @@ namespace GeneGenie.DataQuality
                 }
             }
 
-            if (dayPos >= 0 && monthPos >= 0)
+            if (dayPos < 0 || monthPos < 0)
             {
-                dateRange.DateFrom = new DateTime(year, month, day);
-                dateRange.DateTo = new DateTime(year, month, day).EndOfDay();
-                if (yearPos == 0)
+                dateRange.SourceFormat = DateFormat.UnableToParse;
+                dateRange.Status = DateQualityStatus.NotValid;
+                return dateRange;
+            }
+
+            dateRange.DateFrom = new DateTime(year, month, day);
+            dateRange.DateTo = new DateTime(year, month, day).EndOfDay();
+
+            if (yearPos == 0)
+            {
+                if (day <= MaxMonth && !monthIsNamed)
                 {
-                    if (day <= MaxMonth && !monthIsNamed)
-                    {
-                        dateRange.SourceFormat = DateFormat.UnsureEndingWithDateOrMonth;
-                        dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
-                    }
-                    else
-                    {
-                        dateRange.SourceFormat = FormatFromMonthPositionWithYearPrefix(monthPos, dayPos, monthIsNamed);
-                        dateRange.Status = DateQualityStatus.OK;
-                    }
+                    dateRange.SourceFormat = DateFormat.UnsureEndingWithDateOrMonth;
+                    dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
                 }
                 else
                 {
-                    if (day <= MaxMonth && !monthIsNamed)
-                    {
-                        dateRange.SourceFormat = DateFormat.UnsureStartingWithDateOrMonth;
-                        dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
-                    }
-                    else
-                    {
-                        dateRange.SourceFormat = FormatFromMonthPositionWithYearSuffix(monthPos, dayPos, monthIsNamed);
-                        dateRange.Status = DateQualityStatus.OK;
-                    }
+                    dateRange.SourceFormat = FormatFromMonthPositionWithYearPrefix(monthPos, dayPos, monthIsNamed);
+                    dateRange.Status = DateQualityStatus.OK;
                 }
             }
             else
             {
-                dateRange.SourceFormat = DateFormat.UnableToParse;
-                dateRange.Status = DateQualityStatus.NotValid;
+                if (day <= MaxMonth && !monthIsNamed)
+                {
+                    dateRange.SourceFormat = DateFormat.UnsureStartingWithDateOrMonth;
+                    dateRange.Status = DateQualityStatus.MonthIsAmbiguous;
+                }
+                else
+                {
+                    dateRange.SourceFormat = FormatFromMonthPositionWithYearSuffix(monthPos, dayPos, monthIsNamed);
+                    dateRange.Status = DateQualityStatus.OK;
+                }
             }
 
             return dateRange;
