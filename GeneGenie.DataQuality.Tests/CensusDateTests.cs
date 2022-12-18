@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using Data;
-
     /// <summary>
     /// Tests to ensure year census enum parses OK.
     /// </summary>

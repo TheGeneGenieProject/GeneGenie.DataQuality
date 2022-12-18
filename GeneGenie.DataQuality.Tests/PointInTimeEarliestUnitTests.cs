@@ -5,10 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using Data;
-    using DataQuality.Models;
-    using Models;
-
     /// <summary>
     /// Tests for ensuring that given a single date and age, the earliest birth date
     /// can be calculated.

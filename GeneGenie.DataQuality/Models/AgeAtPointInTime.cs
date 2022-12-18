@@ -8,23 +8,9 @@ namespace GeneGenie.DataQuality.Models
     /// <summary>
     /// Holds the age of a person at a specific point in time.
     /// </summary>
-    public class AgeAtPointInTime
+    /// <param name="Age">Gets or sets the persons' age as normally reported in a census or official document.</param>
+    /// <param name="Date">Gets or sets the date that the person was known to be a specific age.</param>
+    public record AgeAtPointInTime(int Age, DateTime Date)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AgeAtPointInTime"/> class.
-        /// </summary>
-        public AgeAtPointInTime()
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the persons' age as normally reported in a census or official document.
-        /// </summary>
-        public int Age { get; set; }
-
-        /// <summary>
-        /// Gets or sets the date that the person was known to be a specific age.
-        /// </summary>
-        public DateTime Date { get; set; }
     }
 }

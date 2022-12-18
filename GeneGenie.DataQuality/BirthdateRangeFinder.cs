@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality
 {
-    using Models;
-
     /// <summary>
     /// Used to find a range of possible birth dates given a known age and date.
     /// </summary>
@@ -19,8 +17,10 @@ namespace GeneGenie.DataQuality
         /// <returns>A <see cref="BirthdateRange"/> instance representing a possible birth
         /// date range.
         /// </returns>
-        public static BirthdateRange CalculateBirthdateRange(List<AgeAtPointInTime> knownAges)
+        public static BirthdateRange CalculateBirthdateRange(IList<AgeAtPointInTime> knownAges)
         {
+            ArgumentNullException.ThrowIfNull(knownAges);
+
             var birthDateRanges = new List<BirthdateRange>();
             foreach (var knownAge in knownAges)
             {
@@ -51,6 +51,8 @@ namespace GeneGenie.DataQuality
         /// <returns>A range of dates that the person could have been born on.</returns>
         public static BirthdateRange CalculateBirthdateRange(AgeAtPointInTime knownAge)
         {
+            ArgumentNullException.ThrowIfNull(knownAge);
+
             return new BirthdateRange
             {
                 Earliest = knownAge.Date.AddYears(-(knownAge.Age + 1)).AddDays(1),

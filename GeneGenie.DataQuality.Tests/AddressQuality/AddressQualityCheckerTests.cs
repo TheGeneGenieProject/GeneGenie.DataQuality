@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests.AddressQuality
 {
-    using DataQuality.Models;
-
     /// <summary>
     /// Tests to ensure that we don't do an expensive lookup on known junk addresses.
     /// The address is parsed to see if it is any of this type of data and a

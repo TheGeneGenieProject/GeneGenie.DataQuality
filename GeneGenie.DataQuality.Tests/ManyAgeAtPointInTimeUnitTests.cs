@@ -5,9 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using Data;
-    using DataQuality.Models;
-
     /// <summary>
     /// Tests to check that multiple <see cref="AgeAtPointInTime"/> instances can be
     /// summarised to create a more accurate date of birth range.
@@ -23,10 +20,10 @@ namespace GeneGenie.DataQuality.Tests
         {
             var knownAges = new List<AgeAtPointInTime>
             {
-                new AgeAtPointInTime { Age = 7, Date = UkCensus.DateFromCensusYear(UkCensusYears.Census1871) },
-                new AgeAtPointInTime { Age = 27, Date = UkCensus.DateFromCensusYear(UkCensusYears.Census1891) },
-                new AgeAtPointInTime { Age = 39, Date = UkCensus.DateFromCensusYear(UkCensusYears.Census1901) },
-                new AgeAtPointInTime { Age = 50, Date = UkCensus.DateFromCensusYear(UkCensusYears.Census1911) },
+                new AgeAtPointInTime(7, UkCensus.DateFromCensusYear(UkCensusYears.Census1871)),
+                new AgeAtPointInTime(27, UkCensus.DateFromCensusYear(UkCensusYears.Census1891)),
+                new AgeAtPointInTime(39, UkCensus.DateFromCensusYear(UkCensusYears.Census1901)),
+                new AgeAtPointInTime(50, UkCensus.DateFromCensusYear(UkCensusYears.Census1911)),
             };
 
             var result = BirthdateRangeFinder.CalculateBirthdateRange(knownAges);

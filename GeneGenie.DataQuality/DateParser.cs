@@ -5,10 +5,6 @@
 
 namespace GeneGenie.DataQuality
 {
-    using ExtensionMethods;
-    using Models;
-    using System;
-
     /// <summary>
     /// This is only for parsing dates from DNAGedcom, we should merge with the code from GeneGenie for fuller date parsing.
     /// </summary>
@@ -31,7 +27,7 @@ namespace GeneGenie.DataQuality
         // We only deal with historical dates, but just in case.
         private static readonly int MaxYear = DateTime.Now.Year + 10;
 
-        private static readonly List<string> fullEnglishMonthNames = new List<string>
+        private static readonly List<string> fullEnglishMonthNames = new()
         {
             "january", "february", "march", "april", "may", "jun", "july", "august", "september", "october", "november", "december",
         };
@@ -82,7 +78,7 @@ namespace GeneGenie.DataQuality
             // Just a year?
             if (TextIsNumberBetween(dateComponents[0], MinYear, MaxYear))
             {
-                var year = int.Parse(dateComponents[0], System.Globalization.CultureInfo.InvariantCulture);
+                var year = int.Parse(dateComponents[0], CultureInfo.InvariantCulture);
                 dateRange.DateFrom = new DateTime(year, MinMonth, MinDay);
                 dateRange.DateTo = new DateTime(year, MaxMonth, MaxDay).EndOfDay();
                 dateRange.SourceFormat = DateFormat.Yyyy;
@@ -380,7 +376,7 @@ namespace GeneGenie.DataQuality
 
             if (TextIsNumberBetween(dateComponent, min, max))
             {
-                value = int.Parse(dateComponent);
+                value = int.Parse(dateComponent, CultureInfo.InvariantCulture);
                 return true;
             }
 
@@ -394,7 +390,7 @@ namespace GeneGenie.DataQuality
                 return false;
             }
 
-            var dateValue = int.Parse(dateText);
+            var dateValue = int.Parse(dateText, CultureInfo.InvariantCulture);
             return dateValue >= minValue && dateValue <= maxValue;
         }
     }

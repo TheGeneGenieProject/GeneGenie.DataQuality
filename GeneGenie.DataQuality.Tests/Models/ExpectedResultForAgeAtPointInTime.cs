@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests.Models
 {
-    using DataQuality.Models;
-
     /// <summary>
     /// Used to create objects to hold test data for the expected outcome
     /// of a test against <see cref="BirthdateRangeFinder"/>.

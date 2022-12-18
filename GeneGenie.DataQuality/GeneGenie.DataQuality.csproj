@@ -13,8 +13,6 @@
 		<PackageProjectUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality</PackageProjectUrl>
 		<PackageLicenseUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/blob/master/Licence.txt</PackageLicenseUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<Nullable>enable</Nullable>
-		<WarningsAsErrors>nullable</WarningsAsErrors>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
@@ -26,14 +24,12 @@
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Folder Include="Properties\" />
-	</ItemGroup>
-
 	<PropertyGroup>
 		<AnalysisMode>All</AnalysisMode>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

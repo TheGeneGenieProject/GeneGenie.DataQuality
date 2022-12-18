@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests.DateParsing
 {
-    using DataQuality.Models;
-
     /// <summary>
     /// Tests for checking that the date parser can extract partial dates.
     /// </summary>

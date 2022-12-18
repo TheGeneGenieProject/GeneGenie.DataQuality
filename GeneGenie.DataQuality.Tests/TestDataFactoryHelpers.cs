@@ -5,9 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using DataQuality.Models;
-    using Models;
-
     /// <summary>
     /// Helper functions to create test data objects.
     /// </summary>
@@ -24,7 +21,7 @@ namespace GeneGenie.DataQuality.Tests
         {
             return new ExpectedResultForAgeAtPointInTime(
                 expected,
-                new AgeAtPointInTime { Age = age, Date = pointInTime });
+                new AgeAtPointInTime(age, pointInTime));
         }
     }
 }

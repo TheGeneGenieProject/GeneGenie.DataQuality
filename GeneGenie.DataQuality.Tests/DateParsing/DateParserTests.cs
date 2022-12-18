@@ -5,9 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests.DateParsing
 {
-    using DataQuality.Models;
-    using ExtensionMethods;
-
     /// <summary>
     /// Tests for checking that the date parsing code passes and fails as expected.
     /// </summary>

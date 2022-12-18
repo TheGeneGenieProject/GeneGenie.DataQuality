@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality
 {
-    using Models;
-
     /// <summary>
     /// Class for checking the quality of input data to avoid expensive lookups via
     /// external services. Used primarily for address fields but can be extended
