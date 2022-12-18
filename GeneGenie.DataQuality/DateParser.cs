@@ -26,7 +26,7 @@ namespace GeneGenie.DataQuality
         private static readonly char[] DateDelimiters = { ' ', '-', '/', '\\' };
 
         // Should not be less than or equal to 31 as could be confused with the day.
-        private static readonly int MinYear = 50;
+        private const int MinYear = 50;
 
         // We only deal with historical dates, but just in case.
         private static readonly int MaxYear = DateTime.Now.Year + 10;
@@ -82,7 +82,7 @@ namespace GeneGenie.DataQuality
             // Just a year?
             if (TextIsNumberBetween(dateComponents[0], MinYear, MaxYear))
             {
-                var year = int.Parse(dateComponents[0]);
+                var year = int.Parse(dateComponents[0], System.Globalization.CultureInfo.InvariantCulture);
                 dateRange.DateFrom = new DateTime(year, MinMonth, MinDay);
                 dateRange.DateTo = new DateTime(year, MaxMonth, MaxDay).EndOfDay();
                 dateRange.SourceFormat = DateFormat.Yyyy;
