@@ -19,24 +19,24 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
         public static IEnumerable<object[]> MonthRangeData =>
             new List<object[]>
             {
-                new object[] { "1937 Feb", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Yyyy_mmm },
-                new object[] { "Feb 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Mmm_yyyy },
-                new object[] { "1939 Mar 9", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.Yyyy_mmm_dd },
-                new object[] { "1939 9 Mar", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.Yyyy_dd_mmm },
-                new object[] { "1939 Sep 27", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Yyyy_mmm_dd },
-                new object[] { "1939 27 Sep", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Yyyy_dd_mmm },
+                new object[] { "1937 Feb", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.YyyyMmm },
+                new object[] { "Feb 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.MmmYyyy },
+                new object[] { "1939 Mar 9", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.YyyyMmmDd },
+                new object[] { "1939 9 Mar", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.YyyyDdMmm },
+                new object[] { "1939 Sep 27", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.YyyyMmmDd },
+                new object[] { "1939 27 Sep", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.YyyyDdMmm },
 
-                new object[] { "1937 February", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Yyyy_mmm },
-                new object[] { "February 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Mmm_yyyy },
-                new object[] { "1939 March 9", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.Yyyy_mmm_dd },
-                new object[] { "1939 9 March", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.Yyyy_dd_mmm },
-                new object[] { "1939 September 27", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Yyyy_mmm_dd },
-                new object[] { "1939 27 September", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Yyyy_dd_mmm },
+                new object[] { "1937 February", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.YyyyMmm },
+                new object[] { "February 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.MmmYyyy },
+                new object[] { "1939 March 9", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.YyyyMmmDd },
+                new object[] { "1939 9 March", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.YyyyDdMmm },
+                new object[] { "1939 September 27", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.YyyyMmmDd },
+                new object[] { "1939 27 September", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.YyyyDdMmm },
 
-                new object[] { "March 9 1939", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.Mmm_dd_yyyy },
-                new object[] { "9 March 1939", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.Dd_mmm_yyyy },
-                new object[] { "September 27 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Mmm_dd_yyyy },
-                new object[] { "27 September 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Dd_mmm_yyyy },
+                new object[] { "March 9 1939", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.MmmDdYyyy },
+                new object[] { "9 March 1939", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.DdMmmYyyy },
+                new object[] { "September 27 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.MmmDdYyyy },
+                new object[] { "27 September 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.DdMmmYyyy },
             };
 
         /// <summary>

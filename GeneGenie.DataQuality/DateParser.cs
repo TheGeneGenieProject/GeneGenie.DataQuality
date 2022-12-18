@@ -125,11 +125,11 @@ namespace GeneGenie.DataQuality
 
                 if (monthIsNamed)
                 {
-                    dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mmm_dd : DateFormat.Dd_mmm;
+                    dateRange.SourceFormat = monthPos == 0 ? DateFormat.MmmDd : DateFormat.DdMmm;
                 }
                 else
                 {
-                    dateRange.SourceFormat = monthPos == 0 ? DateFormat.Mm_dd : DateFormat.Dd_mm;
+                    dateRange.SourceFormat = monthPos == 0 ? DateFormat.MmDd : DateFormat.DdMm;
                 }
 
                 dateRange.Status = DateQualityStatus.NotValid;
@@ -146,10 +146,10 @@ namespace GeneGenie.DataQuality
         {
             if (monthIsNamed)
             {
-                return yearPos < monthPos ? DateFormat.Yyyy_mmm : DateFormat.Mmm_yyyy;
+                return yearPos < monthPos ? DateFormat.YyyyMmm : DateFormat.MmmYyyy;
             }
 
-            return yearPos < monthPos ? DateFormat.Yyyy_mm : DateFormat.Mm_yyyy;
+            return yearPos < monthPos ? DateFormat.YyyyMm : DateFormat.MmYyyy;
         }
 
         private static DateRange ParseThreeComponents(string value, ref List<string> dateComponents)
@@ -260,20 +260,20 @@ namespace GeneGenie.DataQuality
         {
             if (monthAndDayPositions.MonthIsNamed)
             {
-                return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Mmm_dd_yyyy : DateFormat.Dd_mmm_yyyy;
+                return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.MmmDdYyyy : DateFormat.DdMmmYyyy;
             }
 
-            return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Mm_dd_yyyy : DateFormat.Dd_mm_yyyy;
+            return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.MmDdYyyy : DateFormat.DdMmYyyy;
         }
 
         private static DateFormat FormatFromMonthPositionWithYearPrefix(MonthAndDayPositions monthAndDayPositions)
         {
             if (monthAndDayPositions.MonthIsNamed)
             {
-                return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Yyyy_mmm_dd : DateFormat.Yyyy_dd_mmm;
+                return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.YyyyMmmDd : DateFormat.YyyyDdMmm;
             }
 
-            return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.Yyyy_mm_dd : DateFormat.Yyyy_dd_mm;
+            return monthAndDayPositions.DayPos > monthAndDayPositions.MonthPos ? DateFormat.YyyyMmDd : DateFormat.YyyyDdMm;
         }
 
         private static bool IsNumeric(string value)

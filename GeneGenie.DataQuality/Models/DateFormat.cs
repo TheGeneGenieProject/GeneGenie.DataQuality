@@ -21,7 +21,7 @@ namespace GeneGenie.DataQuality.Models
         ///
         /// For example, 25 12 1939 for 25th of Dec 1939.
         /// </summary>
-        Dd_mm_yyyy = 1,
+        DdMmYyyy = 1,
 
         /// <summary>
         /// Date was found to be of the format;
@@ -30,7 +30,7 @@ namespace GeneGenie.DataQuality.Models
         ///
         /// For example, 12 25 1939 for 25th of Dec 1939.
         /// </summary>
-        Mm_dd_yyyy = 2,
+        MmDdYyyy = 2,
 
         /// <summary>
         /// Date was found to be of the format;
@@ -39,7 +39,7 @@ namespace GeneGenie.DataQuality.Models
         ///
         /// For example, 1939 12 25 for 25th of Dec 1939.
         /// </summary>
-        Yyyy_mm_dd = 3,
+        YyyyMmDd = 3,
 
         /// <summary>
         /// Date was found to be of the format;
@@ -48,16 +48,16 @@ namespace GeneGenie.DataQuality.Models
         ///
         /// For example, 1939 25 12 for 25th of Dec 1939.
         /// </summary>
-        Yyyy_dd_mm = 4,
+        YyyyDdMm = 4,
 
         /// <summary>
-        /// Could be either <see cref="Dd_mm_yyyy"/> or <see cref="Mm_dd_yyyy"/> depending on the
+        /// Could be either <see cref="DdMmYyyy"/> or <see cref="MmDdYyyy"/> depending on the
         /// surrounding records.
         /// </summary>
         UnsureStartingWithDateOrMonth = 5,
 
         /// <summary>
-        /// Could be either <see cref="Yyyy_mm_dd"/> or <see cref="Yyyy_dd_mm"/> depending on the
+        /// Could be either <see cref="YyyyMmDd"/> or <see cref="YyyyDdMm"/> depending on the
         /// surrounding records.
         /// </summary>
         UnsureEndingWithDateOrMonth = 6,
@@ -70,12 +70,12 @@ namespace GeneGenie.DataQuality.Models
         /// <summary>
         /// The date input was parsed as a 4 digit year followed by 1 or 2 digits for the month.
         /// </summary>
-        Yyyy_mm = 8,
+        YyyyMm = 8,
         
         /// <summary>
         /// The date input was parsed as a one or two digit month followed by a 4 digit year.
         /// </summary>
-        Mm_yyyy = 9,
+        MmYyyy = 9,
 
         /// <summary>
         /// The input could not be parsed into one of the date formats. It's probably junk
@@ -103,7 +103,7 @@ namespace GeneGenie.DataQuality.Models
         ///     January 12
         /// </example>
         /// </summary>
-        Mmm_dd = 12,
+        MmmDd = 12,
 
         /// <summary>
         /// The input was parsed as the day of the month (1 or 2 digits) followed by an
@@ -115,7 +115,7 @@ namespace GeneGenie.DataQuality.Models
         ///     12 January
         /// </example>
         /// </summary>
-        Dd_mmm = 13,
+        DdMmm = 13,
 
         /// <summary>
         /// The input was parsed as a 4 digit year followed by an English month name (3 characters or in full).
@@ -126,7 +126,7 @@ namespace GeneGenie.DataQuality.Models
         ///     1939 January
         /// </example>
         /// </summary>
-        Yyyy_mmm = 14,
+        YyyyMmm = 14,
 
         /// <summary>
         /// The input was parsed as an English month name (3 characters or in full)
@@ -138,7 +138,7 @@ namespace GeneGenie.DataQuality.Models
         ///     1939 January
         /// </example>
         /// </summary>
-        Mmm_yyyy = 15,
+        MmmYyyy = 15,
 
         /// <summary>
         /// The input was parsed as a 4 digit year followed by an English month name (3 characters or in full)
@@ -150,7 +150,7 @@ namespace GeneGenie.DataQuality.Models
         ///     1939 January 1
         /// </example>
         /// </summary>
-        Yyyy_mmm_dd = 16,
+        YyyyMmmDd = 16,
 
         /// <summary>
         /// The input was parsed as a 4 digit year followed by a 1 or 2 digit day of the month
@@ -162,7 +162,7 @@ namespace GeneGenie.DataQuality.Models
         ///     1939 1 January
         /// </example>
         /// </summary>
-        Yyyy_dd_mmm = 17,
+        YyyyDdMmm = 17,
 
         /// <summary>
         /// The input was parsed as an English month name (3 characters or in full)
@@ -174,7 +174,7 @@ namespace GeneGenie.DataQuality.Models
         ///     January 2 1939
         /// </example>
         /// </summary>
-        Mmm_dd_yyyy = 18,
+        MmmDdYyyy = 18,
 
         /// <summary>
         /// The input was parsed as a 1 or 2 digit day of the month
@@ -187,7 +187,7 @@ namespace GeneGenie.DataQuality.Models
         ///     1 January 1939
         /// </example>
         /// </summary>
-        Dd_mmm_yyyy = 19,
+        DdMmmYyyy = 19,
 
         /// <summary>
         /// The input was parsed as a 1 or 2 digit day of the month.
@@ -207,7 +207,7 @@ namespace GeneGenie.DataQuality.Models
         ///
         /// For example, 25 12 for 25th of Dec.
         /// </summary>
-        Dd_mm = 21,
+        DdMm = 21,
 
         /// <summary>
         /// Date was found to be of the format;
@@ -216,7 +216,7 @@ namespace GeneGenie.DataQuality.Models
         ///
         /// For example, 12 25 for 25th of Dec.
         /// </summary>
-        Mm_dd = 22,
+        MmDd = 22,
 
         /// <summary>
         /// The input was parsed and we found a year in the middle which is not
