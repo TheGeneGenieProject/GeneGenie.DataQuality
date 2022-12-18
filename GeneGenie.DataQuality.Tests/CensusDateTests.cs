@@ -16,9 +16,16 @@ namespace GeneGenie.DataQuality.Tests
         /// Ensures every year in the census enum has a date.
         /// </summary>
         [Fact]
-        public void Every_year_in_census_enum_has_a_date()
+        public void Every_year_in_census_enum_except_for_none_has_a_date()
         {
-            foreach (UkCensusYears censusYear in Enum.GetValues(typeof(UkCensusYears)))
+            var censusYears = Enum
+                .GetValues(typeof(UkCensusYears))
+                .Cast<UkCensusYears>()
+                .Where(cy => cy != UkCensusYears.None)
+                .Select(cy => cy)
+                .ToList();
+
+            foreach (UkCensusYears censusYear in censusYears)
             {
                 var censusDate = UkCensus.DateFromCensusYear(censusYear);
 

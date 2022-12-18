@@ -10,6 +10,9 @@ namespace GeneGenie.DataQuality.Data
     /// </summary>
     public enum UkCensusYears
     {
+        /// <summary>Not set, this is an error condition and should be raised with the developers.</summary>
+        None,
+
         /// <summary>
         /// The 1801 census, destroyed except for a few records.
         /// </summary>

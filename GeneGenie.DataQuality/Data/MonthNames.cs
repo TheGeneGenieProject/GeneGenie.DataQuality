@@ -10,6 +10,9 @@ namespace GeneGenie.DataQuality.Data
     /// </summary>
     public enum MonthNames
     {
+        /// <summary>Not set, this is an error condition and should be raised with the developers.</summary>
+        None,
+
         /// <summary>January</summary>
         Jan = 1,
 
