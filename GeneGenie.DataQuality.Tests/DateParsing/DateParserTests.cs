@@ -5,40 +5,36 @@
 
 namespace GeneGenie.DataQuality.Tests.DateParsing
 {
-    using System;
-    using System.Collections.Generic;
-    using GeneGenie.DataQuality.ExtensionMethods;
-    using GeneGenie.DataQuality.Models;
-    using Xunit;
-
+    /// <summary>
+    /// Tests for checking that the date parsing code passes and fails as expected.
+    /// </summary>
     public class DateParserTests
     {
-        private readonly DateParser dateParser;
-
-        public DateParserTests()
-        {
-            dateParser = new DateParser();
-        }
-
+        /// <summary>
+        /// Data for checking that dates can be parsed into date ranges and the formats are detected correctly.
+        /// </summary>
         public static IEnumerable<object[]> DateRangeData =>
             new List<object[]>
             {
                 new object[] { "1600", new DateTime(1600, 1, 1), new DateTime(1600, 12, 31).EndOfDay(), DateFormat.Yyyy },
-                new object[] { "1937 02", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Yyyy_mm },
-                new object[] { "02 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Mm_yyyy },
-                new object[] { "1937 2", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Yyyy_mm },
-                new object[] { "2 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.Mm_yyyy },
+                new object[] { "1937 02", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.YyyyMm },
+                new object[] { "02 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.MmYyyy },
+                new object[] { "1937 2", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.YyyyMm },
+                new object[] { "2 1937", new DateTime(1937, 2, 1), new DateTime(1937, 2, 28).EndOfDay(), DateFormat.MmYyyy },
                 new object[] { "1939 3 9", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.UnsureEndingWithDateOrMonth },
                 new object[] { "1939 9 3", new DateTime(1939, 9, 3), new DateTime(1939, 9, 3).EndOfDay(), DateFormat.UnsureEndingWithDateOrMonth },
-                new object[] { "1939 9 27", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Yyyy_mm_dd },
-                new object[] { "1939 27 9", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Yyyy_dd_mm },
+                new object[] { "1939 9 27", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.YyyyMmDd },
+                new object[] { "1939 27 9", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.YyyyDdMm },
 
                 new object[] { "3 9 1939", new DateTime(1939, 3, 9), new DateTime(1939, 3, 9).EndOfDay(), DateFormat.UnsureStartingWithDateOrMonth },
                 new object[] { "9 3 1939", new DateTime(1939, 9, 3), new DateTime(1939, 9, 3).EndOfDay(), DateFormat.UnsureStartingWithDateOrMonth },
-                new object[] { "9 27 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Mm_dd_yyyy },
-                new object[] { "27 9 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.Dd_mm_yyyy },
+                new object[] { "9 27 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.MmDdYyyy },
+                new object[] { "27 9 1939", new DateTime(1939, 9, 27), new DateTime(1939, 9, 27).EndOfDay(), DateFormat.DdMmYyyy },
             };
 
+        /// <summary>
+        /// Data that tests that junk source values are detected as junk and not parsed as valid data.
+        /// </summary>
         public static IEnumerable<object[]> UnableToParseData =>
             new List<object[]>
             {
@@ -61,6 +57,9 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "mm dd 2000", DateFormat.UnableToParse },
             };
 
+        /// <summary>
+        /// Test data for checking if delimiters cause issues with parsing.
+        /// </summary>
         public static IEnumerable<object[]> DelimiterData =>
             new List<object[]>
             {
@@ -95,73 +94,107 @@ namespace GeneGenie.DataQuality.Tests.DateParsing
                 new object[] { "////////" },
             };
 
+        /// <summary>
+        /// Tests that a blank string does not cause the parsing to fail.
+        /// </summary>
         [Fact]
         public void Empty_does_not_throw_exception_when_parsing_date()
         {
-            var dateRange = dateParser.Parse(string.Empty);
+            var dateRange = DateParser.Parse(string.Empty);
 
             Assert.NotNull(dateRange);
         }
 
+        /// <summary>
+        /// Tests that a blank string yields empty date results.
+        /// </summary>
         [Fact]
-        public void Empty_result_indicates_invalid_dates()
+        public void Empty_yields_invalid_dates()
         {
-            var dateRange = dateParser.Parse(string.Empty);
+            var dateRange = DateParser.Parse(string.Empty);
 
             Assert.Null(dateRange.DateFrom);
             Assert.Null(dateRange.DateTo);
         }
 
+        /// <summary>
+        /// Checks that the <see cref="DateRange.Source"/> property is populated
+        /// even when passed totally junk data.
+        /// </summary>
         [Fact]
         public void Source_value_is_populated_for_corrupt_data()
         {
-            var dateRange = dateParser.Parse("abcdef");
+            var dateRange = DateParser.Parse("!'�$%^&*()_+");
 
-            Assert.Equal("abcdef", dateRange.Source);
+            Assert.Equal("!'�$%^&*()_+", dateRange.Source);
         }
 
+        /// <summary>
+        /// Checks that the <see cref="DateRange.Source"/> property is populated
+        /// when passed alphabetical data.
+        /// </summary>
         [Fact]
         public void Source_value_is_populated_for_non_numeric_data()
         {
-            var dateRange = dateParser.Parse("abcdef");
+            var dateRange = DateParser.Parse("abcdef");
 
             Assert.Equal("abcdef", dateRange.Source);
         }
 
+        /// <summary>
+        /// Checks that the <see cref="DateRange.Source"/> property is populated
+        /// when passed valid data.
+        /// </summary>
         [Fact]
         public void Source_value_is_populated_for_correct_data()
         {
-            var dateRange = dateParser.Parse("1997");
+            var dateRange = DateParser.Parse("1997");
 
             Assert.Equal("1997", dateRange.Source);
         }
 
+        /// <summary>
+        /// Tests that text made up only of delimiters is not parsed as valid data.
+        /// </summary>
+        /// <param name="dateText"></param>
         [Theory]
         [MemberData(nameof(DelimiterData))]
         public void Text_with_only_delimiters_indicates_invalid_dates(string dateText)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Null(dateRange.DateFrom);
             Assert.Null(dateRange.DateTo);
         }
 
+        /// <summary>
+        /// Tests that a date can be parsed and expanded into a date range.
+        /// </summary>
+        /// <param name="dateText">The text to parse.</param>
+        /// <param name="expectedDateFrom">The expected start of the resulting date range.</param>
+        /// <param name="expectedDateTo">The expected end of the resulting date range.</param>
+        /// <param name="expectedFormatGuess">The format we expect to be detected from the source text.</param>
         [Theory]
         [MemberData(nameof(DateRangeData))]
         public void Dates_can_be_parsed_and_expanded_into_date_ranges(string dateText, DateTime expectedDateFrom, DateTime expectedDateTo, DateFormat expectedFormatGuess)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedDateFrom, dateRange.DateFrom);
             Assert.Equal(expectedDateTo, dateRange.DateTo);
             Assert.Equal(expectedFormatGuess, dateRange.SourceFormat);
         }
 
+        /// <summary>
+        /// Tests that dates that have years in the middle are not parsed as this does not seem to be a format anyone would use.
+        /// </summary>
+        /// <param name="dateText"></param>
+        /// <param name="expectedFormatGuess"></param>
         [Theory]
         [MemberData(nameof(UnableToParseData))]
         public void Dates_with_years_in_the_middle_cannot_be_parsed(string dateText, DateFormat expectedFormatGuess)
         {
-            var dateRange = dateParser.Parse(dateText);
+            var dateRange = DateParser.Parse(dateText);
 
             Assert.Equal(expectedFormatGuess, dateRange.SourceFormat);
         }

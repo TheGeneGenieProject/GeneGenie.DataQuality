@@ -5,8 +5,6 @@
 
 namespace GeneGenie.DataQuality.ExtensionMethods
 {
-    using System;
-
     /// <summary>
     /// Helper methods to find the end of the day or month. Useful for working with date ranges
     /// or when finding all events on a day.

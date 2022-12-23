@@ -2,19 +2,13 @@
 // Copyright (c) GeneGenie.com. All Rights Reserved.
 // Licensed under the GNU Affero General Public License v3.0. See LICENSE in the project root for license information.
 // </copyright>
-// <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
 namespace GeneGenie.DataQuality
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using GeneGenie.DataQuality.Models;
-
     /// <summary>
     /// Used to find a range of possible birth dates given a known age and date.
     /// </summary>
-    public class BirthdateRangeFinder
+    public static class BirthdateRangeFinder
     {
         /// <summary>
         /// Calculates a range of possible birthdates given a list of known ages and dates.
@@ -23,8 +17,10 @@ namespace GeneGenie.DataQuality
         /// <returns>A <see cref="BirthdateRange"/> instance representing a possible birth
         /// date range.
         /// </returns>
-        public BirthdateRange CalculateBirthdateRange(List<AgeAtPointInTime> knownAges)
+        public static BirthdateRange CalculateBirthdateRange(IList<AgeAtPointInTime> knownAges)
         {
+            ArgumentNullException.ThrowIfNull(knownAges);
+
             var birthDateRanges = new List<BirthdateRange>();
             foreach (var knownAge in knownAges)
             {
@@ -40,7 +36,7 @@ namespace GeneGenie.DataQuality
                 });
             }
 
-            return new BirthdateRange()
+            return new BirthdateRange
             {
                 Earliest = birthDateRanges.Min(b => b.Earliest),
                 Latest = birthDateRanges.Max(b => b.Latest),
@@ -53,8 +49,10 @@ namespace GeneGenie.DataQuality
         /// </summary>
         /// <param name="knownAge">A reported date and age for a person.</param>
         /// <returns>A range of dates that the person could have been born on.</returns>
-        public BirthdateRange CalculateBirthdateRange(AgeAtPointInTime knownAge)
+        public static BirthdateRange CalculateBirthdateRange(AgeAtPointInTime knownAge)
         {
+            ArgumentNullException.ThrowIfNull(knownAge);
+
             return new BirthdateRange
             {
                 Earliest = knownAge.Date.AddYears(-(knownAge.Age + 1)).AddDays(1),

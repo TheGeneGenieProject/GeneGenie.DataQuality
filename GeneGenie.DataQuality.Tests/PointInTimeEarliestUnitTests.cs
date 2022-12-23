@@ -2,18 +2,9 @@
 // Copyright (c) GeneGenie.com. All Rights Reserved.
 // Licensed under the GNU Affero General Public License v3.0. See LICENSE in the project root for license information.
 // </copyright>
-// <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using GeneGenie.DataQuality;
-    using GeneGenie.DataQuality.Data;
-    using GeneGenie.DataQuality.Models;
-    using GeneGenie.DataQuality.Tests.Models;
-    using Xunit;
-
     /// <summary>
     /// Tests for ensuring that given a single date and age, the earliest birth date
     /// can be calculated.
@@ -41,9 +32,7 @@ namespace GeneGenie.DataQuality.Tests
         [MemberData(nameof(Earliest_date_test_data))]
         public void Earliest_date_can_be_calculated_correctly(ExpectedResultForAgeAtPointInTime data)
         {
-            var birthDateRangeFinder = new BirthdateRangeFinder();
-
-            var result = birthDateRangeFinder.CalculateBirthdateRange(data.KnownAge);
+            var result = BirthdateRangeFinder.CalculateBirthdateRange(data.KnownAge);
 
             Assert.Equal(data.Expected, result.Earliest);
         }

@@ -5,10 +5,6 @@
 
 namespace GeneGenie.DataQuality.Tests.AddressQuality
 {
-    using System.Collections.Generic;
-    using GeneGenie.DataQuality.Models;
-    using Xunit;
-
     /// <summary>
     /// Tests to ensure that we don't do an expensive lookup on known junk addresses.
     /// The address is parsed to see if it is any of this type of data and a
@@ -16,14 +12,9 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
     /// </summary>
     public class AddressQualityCheckerTests
     {
-        private readonly AddressQualityChecker addressQualityChecker;
-
-        public AddressQualityCheckerTests()
-        {
-            var dateParser = new DateParser();
-            addressQualityChecker = new AddressQualityChecker(dateParser);
-        }
-
+        /// <summary>
+        /// Gets test data for checking the output of <see cref="AddressQualityChecker"/>.
+        /// </summary>
         public static IEnumerable<object[]> AddressQualityData =>
             new List<object[]>
             {
@@ -52,11 +43,16 @@ namespace GeneGenie.DataQuality.Tests.AddressQuality
                 new object[] { "another four part name", AddressQualityStatus.OK },
             };
 
+        /// <summary>
+        /// Asserts that <see cref="AddressQualityChecker"/> handles known bad / good data.
+        /// </summary>
+        /// <param name="source">The text to validate.</param>
+        /// <param name="expected">The expected quality status of the text after validating.</param>
         [Theory]
         [MemberData(nameof(AddressQualityData))]
         public void Address_quality_can_be_calculated_correctly(string source, AddressQualityStatus expected)
         {
-            var status = addressQualityChecker.StatusGuessFromSourceQuality(source);
+            var status = AddressQualityChecker.StatusGuessFromSourceQuality(source);
 
             Assert.Equal(expected, status);
         }

@@ -3,12 +3,11 @@
 A .Net library for analysing data from family trees. Very early stages at the moment, mostly odd analysis ideas.
 
 ## Build status
-[![Build and run tests](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build-and-run-tests.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/build-and-run-tests.yml)
-[![NuGet](https://img.shields.io/nuget/v/GeneGenie.DataQuality.svg)](https://www.nuget.org/packages/GeneGenie.DataQuality) 
+[![Build and run tests](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/sonar.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/sonar.yml)
 
 ### Code quality
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=bugs)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
-[![CodeQL Analysis](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/codeql.yml/badge.svg)](https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/actions/workflows/codeql.yml)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=coverage)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=GeneGenie.DataQuality&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=GeneGenie.DataQuality)

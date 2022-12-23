@@ -2,14 +2,9 @@
 // Copyright (c) GeneGenie.com. All Rights Reserved.
 // Licensed under the GNU Affero General Public License v3.0. See LICENSE in the project root for license information.
 // </copyright>
-// <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
 namespace GeneGenie.DataQuality.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// Data and helper function to find specific dates based on UK census years.
     /// </summary>
@@ -51,7 +46,7 @@ namespace GeneGenie.DataQuality.Data
         /// <returns>The date of the census for the passed year.</returns>
         public static DateTime DateFromCensusYear(UkCensusYears year)
         {
-            return UkCensus.censusDates.Single(d => d.Year == (int)year);
+            return censusDates.Single(d => d.Year == (int)year);
         }
     }
 }

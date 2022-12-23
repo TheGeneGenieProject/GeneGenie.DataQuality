@@ -5,33 +5,34 @@
 
 namespace GeneGenie.DataQuality
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using GeneGenie.DataQuality.Models;
-
-    public class AddressQualityChecker
+    /// <summary>
+    /// Class for checking the quality of input data to avoid expensive lookups via
+    /// external services. Used primarily for address fields but can be extended
+    /// to look for other data.
+    /// </summary>
+    public static class AddressQualityChecker
     {
-        private static readonly List<string> KnownJunkLocations = new List<string>
+        private static readonly List<string> KnownJunkLocations = new()
         {
-            "unknown",
+            "UNKNOWN",
             "?",
         };
 
-        private readonly DateParser dateParser;
-
-        public AddressQualityChecker(DateParser dateParser)
-        {
-            this.dateParser = dateParser;
-        }
-
-        public AddressQualityStatus StatusGuessFromSourceQuality(string source)
+        /// <summary>
+        /// Makes a guess as to the quality of the passed data.
+        /// </summary>
+        /// <param name="source">The string data to check for quality.</param>
+        /// <returns>An enumeration from <see cref="AddressQualityStatus"/> indicating
+        /// how useful or junky the passed text was.
+        /// </returns>
+        public static AddressQualityStatus StatusGuessFromSourceQuality(string source)
         {
             if (string.IsNullOrWhiteSpace(source))
             {
                 return AddressQualityStatus.Empty;
             }
 
-            var cleaned = source.Replace(" ", string.Empty).ToLower();
+            var cleaned = source.Replace(" ", null, StringComparison.InvariantCulture).ToUpperInvariant();
 
             if (KnownJunkLocations.Contains(cleaned))
             {
@@ -48,7 +49,7 @@ namespace GeneGenie.DataQuality
                 return AddressQualityStatus.KnownErroneous;
             }
 
-            var date = dateParser.Parse(source);
+            var date = DateParser.Parse(source);
             if (date.DateFrom != null || date.DateTo != null)
             {
                 return AddressQualityStatus.SeemsToBeADate;

@@ -2,7 +2,6 @@
 // Copyright (c) GeneGenie.com. All Rights Reserved.
 // Licensed under the GNU Affero General Public License v3.0. See LICENSE in the project root for license information.
 // </copyright>
-// <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
 namespace GeneGenie.DataQuality.Data
 {
@@ -11,6 +10,9 @@ namespace GeneGenie.DataQuality.Data
     /// </summary>
     public enum UkCensusYears
     {
+        /// <summary>Not set, this is an error condition and should be raised with the developers.</summary>
+        None,
+
         /// <summary>
         /// The 1801 census, destroyed except for a few records.
         /// </summary>

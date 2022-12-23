@@ -5,50 +5,230 @@
 
 namespace GeneGenie.DataQuality.Models
 {
-    // TODO: Can probably merge with GeneGenie.Gedcom formats.
+    /// <summary>
+    /// When parsed a date will be in one of these formats.
+    /// Possibly this and GeneGenie.Gedcom formats could be merged.
+    /// </summary>
     public enum DateFormat
     {
         /// <summary>This date has not been parsed yet.</summary>
         NotSet = 0,
 
-        Dd_mm_yyyy = 1,
-
-        Mm_dd_yyyy = 2,
-
-        Yyyy_mm_dd = 3,
-
-        Yyyy_dd_mm = 4,
+        /// <summary>
+        /// Date was found to be of the format;
+        ///     day month year
+        /// where day is a maximum of 2 digits, month is a maximum of 2 digits and year is always 4 digits.
+        ///
+        /// For example, 25 12 1939 for 25th of Dec 1939.
+        /// </summary>
+        DdMmYyyy = 1,
 
         /// <summary>
-        /// Could be either <see cref="Dd_mm_yyyy"/> or <see cref="Mm_dd_yyyy"/> depending on the
+        /// Date was found to be of the format;
+        ///     month day year
+        /// where month is a maximum of 2 digits, day is a maximum of 2 digits and year is always 4 digits.
+        ///
+        /// For example, 12 25 1939 for 25th of Dec 1939.
+        /// </summary>
+        MmDdYyyy = 2,
+
+        /// <summary>
+        /// Date was found to be of the format;
+        ///     year month day
+        /// where year is always 4 digits, month is a maximum of 2 digits and day is a maximum of 2 digits.
+        ///
+        /// For example, 1939 12 25 for 25th of Dec 1939.
+        /// </summary>
+        YyyyMmDd = 3,
+
+        /// <summary>
+        /// Date was found to be of the format;
+        ///     year day month
+        /// where year is always 4 digits, day is a maximum of 2 digits and month is a maximum of 2 digits.
+        ///
+        /// For example, 1939 25 12 for 25th of Dec 1939.
+        /// </summary>
+        YyyyDdMm = 4,
+
+        /// <summary>
+        /// Could be either <see cref="DdMmYyyy"/> or <see cref="MmDdYyyy"/> depending on the
         /// surrounding records.
         /// </summary>
         UnsureStartingWithDateOrMonth = 5,
 
         /// <summary>
-        /// Could be either <see cref="Yyyy_mm_dd"/> or <see cref="Yyyy_dd_mm"/> depending on the
+        /// Could be either <see cref="YyyyMmDd"/> or <see cref="YyyyDdMm"/> depending on the
         /// surrounding records.
         /// </summary>
-        UnsureEndingWithDateOrMonth = 5,
+        UnsureEndingWithDateOrMonth = 6,
 
-        Yyyy = 6,
-        Yyyy_mm = 7,
-        Mm_yyyy = 8,
+        /// <summary>
+        /// The date input was parsed as a 4 digit year.
+        /// </summary>
+        Yyyy = 7,
+        
+        /// <summary>
+        /// The date input was parsed as a 4 digit year followed by 1 or 2 digits for the month.
+        /// </summary>
+        YyyyMm = 8,
+        
+        /// <summary>
+        /// The date input was parsed as a one or two digit month followed by a 4 digit year.
+        /// </summary>
+        MmYyyy = 9,
 
-        UnableToParse = 9,
-        Mmm = 10,
-        Mmm_dd = 11,
-        Dd_mmm = 12,
-        Yyyy_mmm = 13,
-        Mmm_yyyy = 14,
-        Yyyy_mmm_dd = 15,
-        Yyyy_dd_mmm = 16,
-        Mmm_dd_yyyy = 17,
-        Dd_mmm_yyyy = 18,
-        Mm = 19,
-        Dd_mm = 20,
-        Mm_dd = 21,
+        /// <summary>
+        /// The input could not be parsed into one of the date formats. It's probably junk
+        /// as I've been a bit excessive about trying to catch all variations.
+        /// </summary>
+        UnableToParse = 10,
+        
+        /// <summary>
+        /// The input was parsed as an English month name. Either in full or the first 3 characters.
+        ///
+        /// <example>
+        ///     Jan or January
+        /// </example>
+        /// </summary>
+        Mmm = 11,
+        
+        /// <summary>
+        /// The input was parsed as an English month name followed by the day of the month as 1 or 2 digits.
+        ///
+        /// The month was either in full or the first 3 characters.
+        ///
+        /// <example>
+        ///     Jan 12
+        /// or
+        ///     January 12
+        /// </example>
+        /// </summary>
+        MmmDd = 12,
 
-        UnableToParseAsYearInMiddle = 22,
+        /// <summary>
+        /// The input was parsed as the day of the month (1 or 2 digits) followed by an
+        /// English month (3 characters or in full).
+        ///
+        /// <example>
+        ///     12 Jan
+        /// or
+        ///     12 January
+        /// </example>
+        /// </summary>
+        DdMmm = 13,
+
+        /// <summary>
+        /// The input was parsed as a 4 digit year followed by an English month name (3 characters or in full).
+        ///
+        /// <example>
+        ///     1939 Jan
+        /// or
+        ///     1939 January
+        /// </example>
+        /// </summary>
+        YyyyMmm = 14,
+
+        /// <summary>
+        /// The input was parsed as an English month name (3 characters or in full)
+        /// followed by a 4 digit year.
+        ///
+        /// <example>
+        ///     1939 Jan
+        /// or
+        ///     1939 January
+        /// </example>
+        /// </summary>
+        MmmYyyy = 15,
+
+        /// <summary>
+        /// The input was parsed as a 4 digit year followed by an English month name (3 characters or in full)
+        /// and finally a 1 or 2 digit day of the month.
+        ///
+        /// <example>
+        ///     1939 Jan 1
+        /// or
+        ///     1939 January 1
+        /// </example>
+        /// </summary>
+        YyyyMmmDd = 16,
+
+        /// <summary>
+        /// The input was parsed as a 4 digit year followed by a 1 or 2 digit day of the month
+        /// and finally an English month name (3 characters or in full).
+        ///
+        /// <example>
+        ///     1939 1 Jan
+        /// or
+        ///     1939 1 January
+        /// </example>
+        /// </summary>
+        YyyyDdMmm = 17,
+
+        /// <summary>
+        /// The input was parsed as an English month name (3 characters or in full)
+        /// followed by a 1 or 2 digit day of the month and finally a 4 digit year.
+        ///
+        /// <example>
+        ///     Jan 1 1939
+        /// or
+        ///     January 2 1939
+        /// </example>
+        /// </summary>
+        MmmDdYyyy = 18,
+
+        /// <summary>
+        /// The input was parsed as a 1 or 2 digit day of the month
+        /// followed by an English month name (3 characters or in full)
+        /// and finally a 4 digit year.
+        ///
+        /// <example>
+        ///     1 Jan 1939
+        /// or
+        ///     1 January 1939
+        /// </example>
+        /// </summary>
+        DdMmmYyyy = 19,
+
+        /// <summary>
+        /// The input was parsed as a 1 or 2 digit day of the month.
+        ///
+        /// <example>
+        ///     1
+        /// or
+        ///     01
+        /// </example>
+        /// </summary>
+        Mm = 20,
+
+        /// <summary>
+        /// Date was found to be of the format;
+        ///     day month
+        /// where day is a maximum of 2 digits and month is a maximum of 2 digits.
+        ///
+        /// For example, 25 12 for 25th of Dec.
+        /// </summary>
+        DdMm = 21,
+
+        /// <summary>
+        /// Date was found to be of the format;
+        ///     month day
+        /// where month is a maximum of 2 digits and day is a maximum of 2 digits.
+        ///
+        /// For example, 12 25 for 25th of Dec.
+        /// </summary>
+        MmDd = 22,
+
+        /// <summary>
+        /// The input was parsed and we found a year in the middle which is not
+        /// a format that I've seen in the wild. For now, we give up and the user
+        /// must fix their data. If this format turns up more than a little then
+        /// I'll consider handling it.
+        /// <example>
+        ///     27 1939 9
+        /// or
+        ///     27 1939 Sep
+        /// </example>
+        /// </summary>
+        UnableToParseAsYearInMiddle = 23,
     }
 }

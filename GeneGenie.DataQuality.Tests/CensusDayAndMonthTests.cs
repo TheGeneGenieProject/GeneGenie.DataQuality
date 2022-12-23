@@ -2,14 +2,9 @@
 // Copyright (c) GeneGenie.com. All Rights Reserved.
 // Licensed under the GNU Affero General Public License v3.0. See LICENSE in the project root for license information.
 // </copyright>
-// <author> Copyright (C) 2017 Ryan O'Neill r@genegenie.com </author>
 
 namespace GeneGenie.DataQuality.Tests
 {
-    using System;
-    using GeneGenie.DataQuality.Data;
-    using Xunit;
-
     /// <summary>
     /// Sanity checks to ensure the days of the census' are correct.
     /// </summary>
@@ -36,15 +31,10 @@ namespace GeneGenie.DataQuality.Tests
         [InlineData(UkCensusYears.Census1911, DayOfWeek.Sunday, MonthNames.Apr)]
         internal void Check_census_dates_are_on_correct_days(UkCensusYears censusYear, DayOfWeek expectedDay, MonthNames expectedMonth)
         {
-            AssertDayAndMonth(censusYear, expectedDay, expectedMonth);
-        }
-
-        private void AssertDayAndMonth(UkCensusYears censusYear, DayOfWeek day, MonthNames monthOfYear)
-        {
             var date = UkCensus.DateFromCensusYear(censusYear);
 
-            Assert.Equal(date.DayOfWeek, day);
-            Assert.Equal(date.Month, (int)monthOfYear);
+            Assert.Equal(date.DayOfWeek, expectedDay);
+            Assert.Equal(date.Month, (int)expectedMonth);
         }
     }
 }
