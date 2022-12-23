@@ -11,8 +11,8 @@
 		<PackageIconUrl>https://avatars0.githubusercontent.com/u/22330020?s=200&amp;v=4</PackageIconUrl>
 		<PackageTags>genegenie gene genie data quality genealogy family history</PackageTags>
 		<PackageProjectUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality</PackageProjectUrl>
-		<PackageLicenseUrl>https://github.com/TheGeneGenieProject/GeneGenie.DataQuality/blob/master/Licence.txt</PackageLicenseUrl>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <PackageLicenseFile>Licence.txt</PackageLicenseFile>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
@@ -30,19 +30,37 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<PackageId>GeneGenie.DataQuality</PackageId>
+		<Title>GeneGenie.DataQuality</Title>
+		<Product>GeneGenie.DataQuality</Product>
+		<PackageIcon>Logo.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <ItemGroup>
+        <None Include="../Licence.txt" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <WarningLevel>9999</WarningLevel>
 	  <NoWarn />
 	  <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Users\r\source\repos\GeneGenie\GeneGenie.DataQuality\GeneGenie.DataQuality\.editorconfig" />
+	  <EditorConfigFiles Remove="./.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\.editorconfig" Link=".editorconfig" />
+	  <None Include="../.editorconfig" Link=".editorconfig" />
+	  <None Include="../Logo.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="../README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 </Project>
