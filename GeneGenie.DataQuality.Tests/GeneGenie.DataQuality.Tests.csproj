@@ -35,7 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\GeneGenie.DataQuality\GeneGenie.DataQuality.csproj" />
+		<ProjectReference Include="../GeneGenie.DataQuality/GeneGenie.DataQuality.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -53,7 +53,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Users\r\source\repos\GeneGenie\GeneGenie.DataQuality\GeneGenie.DataQuality.Tests\.editorconfig" />
+	  <EditorConfigFiles Remove="./.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -61,10 +61,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Users\r\source\repos\GeneGenie\GeneGenie.DataQuality\GeneGenie.DataQuality.Tests\.editorconfig" />
+	  <EditorConfigFiles Remove="./.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="C:\Users\r\source\repos\GeneGenie\GeneGenie.DataQuality\GeneGenie.DataQuality.Tests\.editorconfig" />
+	  <None Include="./.editorconfig" />
 	</ItemGroup>
 </Project>
