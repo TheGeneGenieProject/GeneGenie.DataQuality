@@ -35,7 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\GeneGenie.DataQuality\GeneGenie.DataQuality.csproj" />
+		<ProjectReference Include="../GeneGenie.DataQuality/GeneGenie.DataQuality.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup>
