@@ -7,8 +7,16 @@ namespace GeneGenie.DataQuality.Models
 {
     /// <summary>
     /// Holds a from and to date derived from a parsed text date string.
+    /// As the input data only represents a date, the parsed data represents
+    /// two dates with times spanning that date. For example, parsing a day
+    /// will return a date range of the start and end of the day.
     /// </summary>
-    /// <param name="Source"></param>
+    /// <param name="Source">
+    /// Text for a date such as;
+    ///     Jan
+    ///     Jan 1
+    ///     Jan 1 1990
+    /// </param>
     public record DateRange(string Source)
     {
         /// <summary>
@@ -40,3 +48,12 @@ namespace GeneGenie.DataQuality.Models
         public DateQualityStatus Status { get; set; }
     }
 }
+
+/*
+ * Code to;
+ * Need to figure out what data goes through these fields.
+ * For example, there is a bunch of B.C. parsing for dates. Is that even in the spec?
+ * Parse Date range.
+ * Parse Date periods (after, before etc.).
+ * 
+ * */

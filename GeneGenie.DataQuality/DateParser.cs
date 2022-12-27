@@ -35,7 +35,7 @@ namespace GeneGenie.DataQuality
         /// <summary>
         /// Parses a textual input date into a date range.
         /// The input can be a partial date such as a year and a month
-        /// which is then split into a range representing the whole month.
+        /// which is then split into a range representing the whole year or month.
         /// </summary>
         /// <param name="value">The text to parse that should contain a user entered date string.</param>
         /// <returns>A <see cref="DateRange"/> with the status of the parse, the source value
