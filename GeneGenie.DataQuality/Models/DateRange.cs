@@ -48,12 +48,3 @@ namespace GeneGenie.DataQuality.Models
         public DateQualityStatus Status { get; set; }
     }
 }
-
-/*
- * Code to;
- * Need to figure out what data goes through these fields.
- * For example, there is a bunch of B.C. parsing for dates. Is that even in the spec?
- * Parse Date range.
- * Parse Date periods (after, before etc.).
- * 
- * */
